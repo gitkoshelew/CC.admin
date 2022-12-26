@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "prettier": "prettier --write src/**/*.{ts,js,css,html}",
-    "prepare": "husky install",
+    "prepare": " npm install husky --save-dev && npx husky-init -y",
     "lint": "ng lint"
   },
   "private": true,
