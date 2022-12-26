@@ -57,7 +57,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run prettier --staged && ng lint",
+      "pre-commit": "npm run prettier --staged && ng lint && ng test --watch=false --browsers=ChromeHeadless",
       "pre-push": "ng build --aot true"
     }
   }
