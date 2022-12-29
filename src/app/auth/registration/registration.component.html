@@ -1,23 +1,61 @@
 <div class="regPage">
   <h2>Registration form</h2>
   <div class="reg">
-    <form nz-form class="reg-form" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <form
+      nz-form
+      class="reg-form"
+      [formGroup]="validateForm"
+      (ngSubmit)="submitForm()"
+    >
       <nz-form-item>
-        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="firstName">Firstname</nz-form-label>
-        <nz-form-control [nzSm]="20" [nzXs]="24" nzErrorTip="The input is not valid Firstname!">
-          <input nz-input formControlName="firstName" id="firstName" placeholder="Firstname"/>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="firstName"
+          >Firstname</nz-form-label
+        >
+        <nz-form-control
+          [nzSm]="20"
+          [nzXs]="24"
+          nzErrorTip="The input is not valid Firstname!"
+        >
+          <input
+            nz-input
+            formControlName="firstName"
+            id="firstName"
+            placeholder="Firstname"
+          />
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="lastName">Lastname</nz-form-label>
-        <nz-form-control [nzSm]="20" [nzXs]="24" nzErrorTip="The input is not valid Lastname!">
-          <input nz-input formControlName="lastName" id="lastName" placeholder="Lastname"/>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="lastName"
+          >Lastname</nz-form-label
+        >
+        <nz-form-control
+          [nzSm]="20"
+          [nzXs]="24"
+          nzErrorTip="The input is not valid Lastname!"
+        >
+          <input
+            nz-input
+            formControlName="lastName"
+            id="lastName"
+            placeholder="Lastname"
+          />
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
-        <nz-form-control [nzSm]="20" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
-          <input nz-input formControlName="email" id="email" placeholder="Email"/>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="email"
+          >E-mail</nz-form-label
+        >
+        <nz-form-control
+          [nzSm]="20"
+          [nzXs]="24"
+          nzErrorTip="The input is not valid E-mail!"
+        >
+          <input
+            nz-input
+            formControlName="email"
+            id="email"
+            placeholder="Email"
+          />
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
@@ -30,13 +68,28 @@
         >
           <span>Nickname</span>
         </nz-form-label>
-        <nz-form-control [nzSm]="20" [nzXs]="24" nzErrorTip="Please input your nickname!">
-          <input nz-input id="nickname" formControlName="nickname" placeholder="Nickname"/>
+        <nz-form-control
+          [nzSm]="20"
+          [nzXs]="24"
+          nzErrorTip="Please input your nickname!"
+        >
+          <input
+            nz-input
+            id="nickname"
+            formControlName="nickname"
+            placeholder="Nickname"
+          />
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="password" nzRequired>Password</nz-form-label>
-        <nz-form-control [nzSm]="20" [nzXs]="24" nzErrorTip="Please input your password!">
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="password" nzRequired
+          >Password</nz-form-label
+        >
+        <nz-form-control
+          [nzSm]="20"
+          [nzXs]="24"
+          nzErrorTip="Please input your password!"
+        >
           <input
             nz-input
             type="password"
@@ -48,18 +101,28 @@
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="checkPassword" nzRequired >Confirm Password</nz-form-label>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="checkPassword" nzRequired
+          >Confirm Password</nz-form-label
+        >
         <nz-form-control [nzSm]="20" [nzXs]="24" [nzErrorTip]="errorTpl">
-          <input nz-input type="password" formControlName="checkPassword" id="checkPassword" placeholder="Confirm password"/>
+          <input
+            nz-input
+            type="password"
+            formControlName="checkPassword"
+            id="checkPassword"
+            placeholder="Confirm password"
+          />
           <ng-template #errorTpl let-control>
-            <ng-container *ngIf="control.hasError('required')">Please confirm your password!</ng-container>
+            <ng-container *ngIf="control.hasError('required')"
+              >Please confirm your password!</ng-container
+            >
             <ng-container *ngIf="control.hasError('confirm')">
               Two passwords that you enter is inconsistent!
             </ng-container>
           </ng-template>
         </nz-form-control>
       </nz-form-item>
-      <nz-form-item nz-row  class="register-area">
+      <nz-form-item nz-row class="register-area">
         <nz-form-control [nzSpan]="4" [nzOffset]="9">
           <button nz-button nzType="primary" nzSize="large">Register</button>
         </nz-form-control>

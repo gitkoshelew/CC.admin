@@ -1,22 +1,28 @@
-import {Component} from '@angular/core';
-import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import {
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss']
+  styleUrls: ['./registration.component.scss'],
+  providers: [UntypedFormBuilder],
 })
-export class RegistrationComponent {
+export class RegistrationComponent implements OnInit {
   validateForm!: UntypedFormGroup;
 
   submitForm(): void {
     if (this.validateForm.valid) {
       console.log('submit', this.validateForm.value);
     } else {
-      Object.values(this.validateForm.controls).forEach(control => {
+      Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {
           control.markAsDirty();
-          control.updateValueAndValidity({onlySelf: true});
+          control.updateValueAndValidity({ onlySelf: true });
         }
       });
     }
@@ -24,20 +30,23 @@ export class RegistrationComponent {
 
   updateConfirmValidator(): void {
     /** wait for refresh value */
-    Promise.resolve().then(() => this.validateForm.controls['checkPassword'].updateValueAndValidity());
+    Promise.resolve().then(() =>
+      this.validateForm.controls['checkPassword'].updateValueAndValidity(),
+    );
   }
 
-  confirmationValidator = (control: UntypedFormControl): { [s: string]: boolean } => {
+  confirmationValidator = (
+    control: UntypedFormControl,
+  ): { [s: string]: boolean } => {
     if (!control.value) {
-      return {required: true};
+      return { required: true };
     } else if (control.value !== this.validateForm.controls['password'].value) {
-      return {confirm: true, error: true};
+      return { confirm: true, error: true };
     }
     return {};
   };
 
-  constructor(private fb: UntypedFormBuilder) {
-  }
+  constructor(private fb: UntypedFormBuilder) {}
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
