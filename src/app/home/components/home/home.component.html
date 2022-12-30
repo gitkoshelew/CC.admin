@@ -1,0 +1,49 @@
+<nz-layout>
+  <nz-header>
+    <div class="logo"></div>
+    <ul nz-menu nzTheme="dark" nzMode="horizontal" class="header-menu">
+      <li nz-menu-item routerLink="categories">All categories</li>
+      <li nz-menu-item routerLink="tests">All tests</li>
+    </ul>
+  </nz-header>
+  <nz-layout>
+    <nz-sider nzWidth="200px" nzTheme="light">
+      <ul nz-menu nzMode="inline">
+        <li nz-menu-item nzSelected routerLink="/">
+          <span>Dashboard</span>
+        </li>
+        <li nz-submenu nzTitle="Categories" nzIcon="database" [nzOpen]="true">
+          <ul>
+            <li
+              nz-submenu
+              *ngFor="let category of categories"
+              [nzTitle]="category"
+            >
+              <ul>
+                <li
+                  nz-menu-item
+                  *ngFor="let test of tests"
+                  [routerLink]="['test', test.id]"
+                >
+                  {{ test.name }}
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li nz-submenu nzTitle="Users" nzIcon="usergroup-add">
+          <ul>
+            <li nz-menu-item routerLink="admins">Admins</li>
+            <li nz-menu-item routerLink="users">Users</li>
+          </ul>
+        </li>
+      </ul>
+    </nz-sider>
+    <nz-layout class="inner-layout">
+      <nz-breadcrumb>
+        <nz-breadcrumb-item>Home</nz-breadcrumb-item>
+      </nz-breadcrumb>
+      <nz-content><router-outlet></router-outlet></nz-content>
+    </nz-layout>
+  </nz-layout>
+</nz-layout>
