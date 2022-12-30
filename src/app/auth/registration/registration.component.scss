@@ -1,0 +1,35 @@
+.regPage {
+  background-color: #DADADA;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h2 {
+    background-color: #060420;
+    color: #ffffff;
+    margin: 0 auto;
+    padding: 5px 0;
+    width: 400px;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+    font-weight: bold;
+  }
+
+  .reg {
+    background-color: #ffffff;
+    width: 400px;
+    height: 420px;
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .reg-form {
+      width: 350px
+    }
+  }
+}
