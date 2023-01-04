@@ -9,12 +9,12 @@ export class HomeComponent {
   categories = ['JavaScript', 'Node.js', 'React'];
   tests = [
     {
-      id: Math.random(),
+      id: Math.random()*10,
       name: 'Test 1',
       questions: ['Question 1', 'Question 2', 'Question 3'],
     },
     {
-      id: Math.random(),
+      id: Math.random()*10,
       name: 'Test 2',
       questions: ['Question 1', 'Question 2', 'Question 3'],
     },

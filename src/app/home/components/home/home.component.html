@@ -15,19 +15,11 @@
         <li nz-submenu nzTitle="Categories" nzIcon="database" [nzOpen]="true">
           <ul>
             <li
-              nz-submenu
+              nz-menu-item
               *ngFor="let category of categories"
-              [nzTitle]="category"
+              [routerLink]="['categories', category]"
             >
-              <ul>
-                <li
-                  nz-menu-item
-                  *ngFor="let test of tests"
-                  [routerLink]="['test', test.id]"
-                >
-                  {{ test.name }}
-                </li>
-              </ul>
+              {{category}}
             </li>
           </ul>
         </li>
@@ -40,8 +32,10 @@
       </ul>
     </nz-sider>
     <nz-layout class="inner-layout">
-      <nz-breadcrumb>
-        <nz-breadcrumb-item>Home</nz-breadcrumb-item>
+      <nz-breadcrumb [nzAutoGenerate]="true">
+        <nz-breadcrumb-item>
+         Home
+        </nz-breadcrumb-item>
       </nz-breadcrumb>
       <nz-content><router-outlet></router-outlet></nz-content>
     </nz-layout>
