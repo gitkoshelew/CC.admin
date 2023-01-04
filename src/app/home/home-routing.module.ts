@@ -10,9 +10,11 @@ const homeRoutes: Routes = [
     component: HomeComponent,
     children: [
       { path: '', component: ExampleComponent},
-      { path: 'categories', component: ExampleComponent, data: {breadcrumb: 'Categories'}, children: [
-          { path: ':title', component: ExampleComponent, data: {breadcrumb: 'title'} }
-        ]},
+      { path: 'categories', component: ExampleComponent, data: {breadcrumb: 'Categories'},
+        children: [
+          { path: ':title', component: ExampleComponent, data: {breadcrumb: ':title'} }
+        ]
+      },
       { path: 'admins', component: ExampleComponent, data: {breadcrumb: 'Admins'} },
       { path: 'users', component: ExampleComponent, data: {breadcrumb: 'Users'} },
     ],

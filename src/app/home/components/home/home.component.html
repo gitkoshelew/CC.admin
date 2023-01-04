@@ -32,9 +32,9 @@
       </ul>
     </nz-sider>
     <nz-layout class="inner-layout">
-      <nz-breadcrumb [nzAutoGenerate]="true">
+      <nz-breadcrumb [nzAutoGenerate]="true" [nzRouteLabelFn]="getActiveTitle.bind(this)">
         <nz-breadcrumb-item>
-         Home
+          Home
         </nz-breadcrumb-item>
       </nz-breadcrumb>
       <nz-content><router-outlet></router-outlet></nz-content>
