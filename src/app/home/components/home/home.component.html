@@ -12,7 +12,7 @@
         <li nz-menu-item nzSelected routerLink="/">
           <span>Dashboard</span>
         </li>
-        <li nz-submenu nzTitle="Categories" nzIcon="database" [nzOpen]="true">
+        <li nz-submenu nzTitle="Categories" [routerLink]="categories" nzIcon="database" [nzOpen]="true">
           <ul>
             <li
               nz-menu-item
@@ -36,7 +36,7 @@
         [nzAutoGenerate]="true"
         [nzRouteLabelFn]="getActiveTitle.bind(this)"
       >
-        <nz-breadcrumb-item> Home </nz-breadcrumb-item>
+        <nz-breadcrumb-item class='breadcrumbHome' [routerLink]="['']"> Home </nz-breadcrumb-item>
       </nz-breadcrumb>
       <nz-content><router-outlet></router-outlet></nz-content>
     </nz-layout>
