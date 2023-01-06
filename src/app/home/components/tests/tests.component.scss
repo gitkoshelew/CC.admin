@@ -1,0 +1,21 @@
+.cardsTests{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  nz-card{
+    width: 300px;
+    height: 250px;
+    cursor: pointer;
+    display: grid;
+    text-align: center;
+    border-radius: 5px;
+    margin: 10px;
+  .answersList{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+  }
+  }
+}
