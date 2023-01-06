@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, Subject, takeUntil } from 'rxjs';
 
@@ -19,7 +19,7 @@ interface QuestionInterface {
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss'],
 })
-export class CategoryComponent implements OnInit {
+export class CategoryComponent implements OnInit, OnDestroy {
   title = '';
   autoUnsub: Subject<boolean> = new Subject();
   tests: TestInterface[] = [
