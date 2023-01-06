@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TestInterface } from '../category/category.component';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, Subject, takeUntil } from 'rxjs';
@@ -8,7 +8,7 @@ import { filter, Subject, takeUntil } from 'rxjs';
   templateUrl: './tests.component.html',
   styleUrls: ['./tests.component.scss'],
 })
-export class TestsComponent implements OnInit, OnDestroy{
+export class TestsComponent implements OnInit, OnDestroy {
   id?: number;
   title = '';
   autoUnsub: Subject<boolean> = new Subject();
