@@ -7,6 +7,8 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { CommonModule } from '@angular/common';
 import { ExampleComponent } from './components/example/example.component';
+import { WebsocketModule } from 'src/shared/websocket/websocket.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [HomeComponent, ExampleComponent],
@@ -16,6 +18,11 @@ import { ExampleComponent } from './components/example/example.component';
     NzLayoutModule,
     NzMenuModule,
     NzBreadCrumbModule,
+    FormsModule,
+    ReactiveFormsModule,
+    WebsocketModule.config({
+      url: 'wss://socketsbay.com/wss/v2/1/demo/',
+    }),
   ],
   exports: [],
 })

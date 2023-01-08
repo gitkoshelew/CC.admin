@@ -1,1 +1,19 @@
-<p>example works!</p>
+<div class="container">
+  <h1>Angular WebSocket Starter Demo</h1>
+
+  <ul *ngIf="messages$ | async as messages">
+    <li *ngFor="let message of messages">
+      <strong>{{ message }}</strong>
+    </li>
+  </ul>
+
+  <form [formGroup]="form" autocomplete="off" novalidate (submit)="sendText()">
+    <textarea
+      placeholder="Some text"
+      autocomplete="off"
+      formControlName="text"
+    ></textarea>
+
+    <button type="submit" [disabled]="form.invalid">Send text</button>
+  </form>
+</div>
