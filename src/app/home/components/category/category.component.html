@@ -1,0 +1,17 @@
+<div style="background: #ececec; padding: 30px">
+  <div nz-row [nzGutter]="6">
+    <div class="cards" nz-col>
+      <nz-card [nzTitle]="title" *ngFor="let test of tests">
+        <p>General questions about {{ title }}</p>
+        <button
+          nz-button
+          nzType="primary"
+          nzShape="round"
+          (click)="navigateToTests(test.id)"
+        >
+          Start
+        </button>
+      </nz-card>
+    </div>
+  </div>
+</div>

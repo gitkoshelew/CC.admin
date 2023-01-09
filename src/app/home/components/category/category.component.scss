@@ -1,0 +1,21 @@
+.cards{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  nz-card{
+    width: 300px;
+    height: 200px;
+    cursor: pointer;
+    display: grid;
+    text-align: center;
+    border-radius: 5px;
+    margin: 10px;
+  }
+  button{
+    background-color: #2D3E6B;
+    border: #2D3E6B 1px solid;
+    outline: none;
+    width: 115px;
+    height: 42px;
+  }
+}
