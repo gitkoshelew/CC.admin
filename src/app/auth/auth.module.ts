@@ -13,6 +13,8 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { CommonModule } from '@angular/common';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [LoginComponent, RegistrationComponent],
@@ -27,6 +29,7 @@ import { CommonModule } from '@angular/common';
     NzSpinModule,
     CommonModule,
   ],
+  providers: [CookieService, AuthService],
   exports: [LoginComponent, RegistrationComponent],
 })
 export class AuthModule {}

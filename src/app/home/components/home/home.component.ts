@@ -30,18 +30,21 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.setActiveRoute()
-    this.router.events.pipe(
-      takeUntil(this.autoUnsub),
-      filter(event => event instanceof NavigationEnd)
-    )
-    .subscribe(() => {
-      this.setActiveRoute()
-    })
+    this.setActiveRoute();
+    this.router.events
+      .pipe(
+        takeUntil(this.autoUnsub),
+        filter((event) => event instanceof NavigationEnd),
+      )
+      .subscribe(() => {
+        this.setActiveRoute();
+      });
   }
   private setActiveRoute() {
-    this.activeTitle = this.activatedRoute.snapshot.firstChild?.firstChild?.params['title'] || ''
-    console.log(this.activeTitle)
+    this.activeTitle =
+      this.activatedRoute.snapshot.firstChild?.firstChild?.params['title'] ||
+      '';
+    console.log(this.activeTitle);
   }
   public getActiveTitle(text: string) {
     return text == ':title' ? this.activeTitle : text;
