@@ -9,20 +9,14 @@ import { filter, Subject, takeUntil } from 'rxjs';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   categories = ['JavaScript', 'Node.js', 'React'];
-  tests = [
-    {
-      id: Math.random() * 10,
-      name: 'Test 1',
-      questions: ['Question 1', 'Question 2', 'Question 3'],
-    },
-    {
-      id: Math.random() * 10,
-      name: 'Test 2',
-      questions: ['Question 1', 'Question 2', 'Question 3'],
-    },
-  ];
+
   activeTitle = '';
   autoUnsub: Subject<boolean> = new Subject();
+
+  navigateToCategories(event: MouseEvent, path: string) {
+    event.stopPropagation();
+    this.router.navigate([`categories/${path}`]);
+  }
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
@@ -30,18 +24,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.setActiveRoute()
-    this.router.events.pipe(
-      takeUntil(this.autoUnsub),
-      filter(event => event instanceof NavigationEnd)
-    )
-    .subscribe(() => {
-      this.setActiveRoute()
-    })
+    this.setActiveRoute();
+    this.router.events
+      .pipe(
+        takeUntil(this.autoUnsub),
+        filter((event) => event instanceof NavigationEnd),
+      )
+      .subscribe(() => {
+        this.setActiveRoute();
+      });
   }
   private setActiveRoute() {
-    this.activeTitle = this.activatedRoute.snapshot.firstChild?.firstChild?.params['title'] || ''
-    console.log(this.activeTitle)
+    this.activeTitle =
+      this.activatedRoute.snapshot.firstChild?.params['title'] || '';
   }
   public getActiveTitle(text: string) {
     return text == ':title' ? this.activeTitle : text;
