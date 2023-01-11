@@ -15,6 +15,7 @@ export class AuthService {
     password: '123456',
     rememberMe: false,
   };
+  
   currentUser: CurrentUserInterface = {
     id: 1,
     email: '',
@@ -50,6 +51,7 @@ export class AuthService {
       throw new Error('credential was mismatched');
     }
   }
+
   getCurrentUser(): Observable<CurrentUserInterface> {
     const token = this.cookieService.get('accessToken');
     if (
