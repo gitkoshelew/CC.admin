@@ -43,12 +43,14 @@
       <button
         nz-button
         class="login-form-button login-form-margin"
+        type="submit"
         [nzType]="'primary'"
+        [disabled]="isSubmitting$ | async"
       >
         Log in
       </button>
       Or
-      <a>register now!</a>
+      <a routerLink="/reg">register now!</a>
     </form>
   </div>
 </div>
