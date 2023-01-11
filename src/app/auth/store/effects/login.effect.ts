@@ -38,7 +38,6 @@ export class LoginEffect {
       switchMap(({ request }) => {
         return this.authService.login(request).pipe(
           map((user: CurrentUserInterface) => {
-            this.cookieService.set('accessToken', user.token);
             return loginSuccessAction({ user });
           }),
           catchError((errorResponse: HttpErrorResponse) => {

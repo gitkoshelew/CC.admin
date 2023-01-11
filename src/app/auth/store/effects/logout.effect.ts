@@ -20,16 +20,9 @@ export class LogoutEffect {
   logout$ = createEffect(() =>
     this.actions$.pipe(
       ofType(logoutAction),
-      switchMap(() => {
-        return this.authService.logout().pipe(
-          map(() => {
-            this.cookieService.delete('accessToken');
-            return logoutSuccessAction();
-          }),
-          catchError(() => {
-            return of(logoutFailureAction());
-          }),
-        );
+      map(() => {
+        this.cookieService.delete('accessToken');
+        return logoutSuccessAction();
       }),
     ),
   );
