@@ -15,7 +15,7 @@ export class AuthService {
     password: '123456',
     rememberMe: false,
   };
-  
+
   currentUser: CurrentUserInterface = {
     id: 1,
     email: '',
