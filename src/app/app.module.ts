@@ -13,6 +13,7 @@ import { AuthModule } from './auth/auth.module';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { AuthGuard } from './utils/guards/auth.guard';
 
 registerLocaleData(en);
 
@@ -35,7 +36,7 @@ registerLocaleData(en);
     }),
     EffectsModule.forRoot([]),
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  providers: [{ provide: NZ_I18N, useValue: en_US }, AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

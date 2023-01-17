@@ -1,7 +1,8 @@
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthService } from '../../services/auth.service';
-import { catchError, map, of, switchMap } from 'rxjs';
+import { catchError, map, of, switchMap, tap } from 'rxjs';
 import { CurrentUserInterface } from '../../../shared/types/currentUser.interface';
 import {
   getCurrentUserAction,
@@ -16,10 +17,11 @@ export class GetCurrentUserEffect {
     private actions$: Actions,
     private authService: AuthService,
     private cookieService: CookieService,
+    private router: Router,
   ) {}
 
-  getCurrentUser$ = createEffect(() =>
-    this.actions$.pipe(
+  getCurrentUser$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(getCurrentUserAction),
       switchMap(() => {
         const token = this.cookieService.get('accessToken');
@@ -35,6 +37,27 @@ export class GetCurrentUserEffect {
           }),
         );
       }),
-    ),
+    )},
   );
+
+  getCurrentUserFailure$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(getCurrentUserFailureAction),
+      tap(() => {
+        console.log('Failed to get current user')
+        this.cookieService.delete('accessToken');
+        this.router.navigateByUrl('/auth/login');
+      })
+    )
+  }, { dispatch: false })
+
+  getCurrentUserSuccess$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(getCurrentUserSuccessAction),
+      tap(() => {
+        console.log('Logged In')
+        this.router.navigateByUrl('/');
+      })
+    )
+  }, { dispatch: false })
 }

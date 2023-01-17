@@ -4,11 +4,13 @@ import { HomeComponent } from './components/home/home.component';
 import { ExampleComponent } from './components/example/example.component';
 import { CategoryComponent } from './components/category/category.component';
 import { TestsComponent } from './components/tests/tests.component';
+import { AuthGuard } from '../utils/guards/auth.guard';
 
 const homeRoutes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: '', component: ExampleComponent },
       {
