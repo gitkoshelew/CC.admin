@@ -62,8 +62,5 @@ export class AuthService {
     else {
       throw new Error('credential was mismatched');
     }
-    //   return this.http
-    //     .get<AuthResponseInterface>('')
-    //     .pipe(map((response) => response.user));
   }
 }

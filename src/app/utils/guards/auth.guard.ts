@@ -6,11 +6,10 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import { Actions, ofType } from '@ngrx/effects';
-import { select, Store } from '@ngrx/store';
+import { Actions } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
-
-import { getCurrentUserSuccessAction } from 'src/app/auth/store/actions/getCurrentUser.action';
+import { getCurrentUserAction } from 'src/app/auth/store/actions/getCurrentUser.action';
 import { isLoggedInSelector } from 'src/app/auth/store/selector';
 
 @Injectable()
@@ -25,24 +24,16 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<boolean> {
-    return this.store.pipe(select(isLoggedInSelector)).pipe(
-      map((isLoggedIn) => {
-        if (!isLoggedIn) {
-          this.actions$
-            .pipe(ofType(getCurrentUserSuccessAction))
-            .subscribe(() => {
-              this.store.pipe(select(isLoggedInSelector)).pipe(
-                map((isLoggedIn) => {
-                  if (!isLoggedIn) {
-                    this.router.navigate(['/login']);
-                  }
-                }),
-              );
-            });
+    return this.store.select(isLoggedInSelector).pipe(
+      map((value: boolean | null) => {
+        if(!value) {
+          this.store.dispatch(getCurrentUserAction());
+          return false;
+        } else {
+          return true;
         }
-        return true;
-      }),
-    );
+      })
+    )
   }
 
   canActivateChild(
@@ -52,3 +43,4 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     return this.canActivate(route, state);
   }
 }
+
