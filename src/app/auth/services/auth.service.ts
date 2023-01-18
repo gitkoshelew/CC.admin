@@ -37,11 +37,7 @@ export class AuthService {
       user.password === this.fakeUser.password // TODO: add http
     ) {
       if (user.rememberMe) {
-        this.cookieService.set(
-          'accessToken',
-          this.currentUser.token,
-          365 * 24 * 3600 * 1000,
-        );
+        this.cookieService.set('accessToken', this.currentUser.token, 365);
       } else {
         this.cookieService.set('accessToken', this.currentUser.token);
       }
