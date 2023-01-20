@@ -13,6 +13,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { CategoryComponent } from './components/category/category.component';
 import { TestsComponent } from './components/tests/tests.component';
 import { CreateTestComponent } from './components/create-test/create-test.component';
+import { TestsService } from './services/tests.service';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { CreateTestComponent } from './components/create-test/create-test.compon
     NzGridModule,
     NzButtonModule,
   ],
+  providers: [TestsService],
   exports: [],
 })
 export class HomeModule {}

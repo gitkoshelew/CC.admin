@@ -37,27 +37,33 @@ export class GetCurrentUserEffect {
           }),
         );
       }),
-    )},
+    );
+  });
+
+  getCurrentUserFailure$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(getCurrentUserFailureAction),
+        tap(() => {
+          console.log('Failed to get current user');
+          this.cookieService.delete('accessToken');
+          this.router.navigateByUrl('/auth/login');
+        }),
+      );
+    },
+    { dispatch: false },
   );
 
-  getCurrentUserFailure$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(getCurrentUserFailureAction),
-      tap(() => {
-        console.log('Failed to get current user')
-        this.cookieService.delete('accessToken');
-        this.router.navigateByUrl('/auth/login');
-      })
-    )
-  }, { dispatch: false })
-
-  getCurrentUserSuccess$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(getCurrentUserSuccessAction),
-      tap(() => {
-        console.log('Logged In')
-        this.router.navigateByUrl('/');
-      })
-    )
-  }, { dispatch: false })
+  getCurrentUserSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(getCurrentUserSuccessAction),
+        tap(() => {
+          console.log('Logged In');
+          this.router.navigateByUrl('/');
+        }),
+      );
+    },
+    { dispatch: false },
+  );
 }

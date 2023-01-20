@@ -26,14 +26,14 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   ): Observable<boolean> {
     return this.store.select(isLoggedInSelector).pipe(
       map((value: boolean | null) => {
-        if(!value) {
+        if (!value) {
           this.store.dispatch(getCurrentUserAction());
           return false;
         } else {
           return true;
         }
-      })
-    )
+      }),
+    );
   }
 
   canActivateChild(
@@ -43,4 +43,3 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     return this.canActivate(route, state);
   }
 }
-
