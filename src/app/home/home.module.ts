@@ -12,6 +12,7 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { CategoryComponent } from './components/category/category.component';
 import { TestsComponent } from './components/tests/tests.component';
+import { CreateTestComponent } from './components/create-test/create-test.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { TestsComponent } from './components/tests/tests.component';
     ExampleComponent,
     CategoryComponent,
     TestsComponent,
+    CreateTestComponent,
   ],
   imports: [
     HomeRoutingModule,

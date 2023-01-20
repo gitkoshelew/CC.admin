@@ -105,6 +105,9 @@ export class CategoryComponent implements OnInit, OnDestroy {
   navigateToTests(id: number) {
     this.router.navigate([`categories/${this.title}/tests/${id}`]);
   }
+  navigateToAddTest(): void {
+    this.router.navigate([`categories/${this.title}/create-test`]);
+  }
   ngOnDestroy(): void {
     this.autoUnsub.next(false);
     this.autoUnsub.complete();
