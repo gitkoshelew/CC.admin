@@ -20,6 +20,7 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { ModalModule } from '../shared/modules/modal/modal.module';
 import { CreateCategoryComponent } from './components/create-category/create-category.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CreateTestComponent } from './components/create-test/create-test.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CategoryComponent,
     TestsComponent,
     CreateCategoryComponent,
+    CreateTestComponent,
   ],
   exports: [],
   imports: [
