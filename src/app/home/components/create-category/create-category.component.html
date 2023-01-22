@@ -1,0 +1,22 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-control [nzSpan]="12" nzErrorTip="Please input new category">
+      <input
+        id="newCategory"
+        type="text"
+        nz-input
+        formControlName="newCategory"
+        placeholder="Category name..."
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <button
+    nz-button
+    class="form-button"
+    [nzType]="'primary'"
+    style="text-align: center"
+  >
+    Create new category
+  </button>
+</form>

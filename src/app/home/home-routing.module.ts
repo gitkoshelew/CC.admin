@@ -5,6 +5,7 @@ import { ExampleComponent } from './components/example/example.component';
 import { CategoryComponent } from './components/category/category.component';
 import { TestsComponent } from './components/tests/tests.component';
 import { AuthGuard } from '../utils/guards/auth.guard';
+import { CategoriesComponent } from './components/categories/categories.component';
 
 const homeRoutes: Routes = [
   {
@@ -15,7 +16,7 @@ const homeRoutes: Routes = [
       { path: '', component: ExampleComponent },
       {
         path: 'categories',
-        component: ExampleComponent,
+        component: CategoriesComponent,
         data: { breadcrumb: 'Categories' },
       },
       {
