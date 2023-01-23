@@ -21,6 +21,7 @@ import { ModalModule } from '../shared/modules/modal/modal.module';
 import { CreateCategoryComponent } from './components/create-category/create-category.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateTestComponent } from './components/create-test/create-test.component';
+import { TestsService } from './services/tests.service';
 
 @NgModule({
   declarations: [
@@ -50,5 +51,7 @@ import { CreateTestComponent } from './components/create-test/create-test.compon
     ReactiveFormsModule,
     NzInputModule,
   ],
+  providers: [TestsService],
+  exports: [],
 })
 export class HomeModule {}

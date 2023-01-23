@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { TestInterface } from '../category/category.component';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, Subject, takeUntil } from 'rxjs';
+import { TestsService } from '../../services/tests.service';
+import {TestInterface} from "../../types/test.interface";
+import {QuestionInterface} from "../../types/question.interface";
 
 @Component({
   selector: 'app-tests',
@@ -9,74 +11,19 @@ import { filter, Subject, takeUntil } from 'rxjs';
   styleUrls: ['./tests.component.scss'],
 })
 export class TestsComponent implements OnInit, OnDestroy {
-  id?: number;
+  id!: number;
   title = '';
   autoUnsub: Subject<boolean> = new Subject();
-  tests: TestInterface[] = [
-    {
-      id: 1,
-      titleCategory: this.title,
-      titleTest: 'test1',
-      questions: [
-        {
-          question: 'question1',
-          answers: ['answer1', 'answer2', 'answer3', 'answer4'],
-        },
-        {
-          question: 'question2',
-          answers: ['answer1', 'answer2', 'answer3', 'answer4'],
-        },
-        {
-          question: 'question3',
-          answers: ['answer1', 'answer2', 'answer3', 'answer4'],
-        },
-      ],
-    },
-    {
-      id: 2,
-      titleCategory: this.title,
-      titleTest: 'test2',
-      questions: [
-        {
-          question: 'question1',
-          answers: ['answer1', 'answer2', 'answer3', 'answer4'],
-        },
-        {
-          question: 'question2',
-          answers: ['answer1', 'answer2', 'answer3', 'answer4'],
-        },
-        {
-          question: 'question3',
-          answers: ['answer1', 'answer2', 'answer3', 'answer4'],
-        },
-      ],
-    },
-    {
-      id: 3,
-      titleCategory: this.title,
-      titleTest: 'test3',
-      questions: [
-        {
-          question: 'question1',
-          answers: ['answer1', 'answer2', 'answer3', 'answer4'],
-        },
-        {
-          question: 'question2',
-          answers: ['answer1', 'answer2', 'answer3', 'answer4'],
-        },
-        {
-          question: 'question3',
-          answers: ['answer1', 'answer2', 'answer3', 'answer4'],
-        },
-      ],
-    },
-  ];
+  tests: TestInterface[] = [];
+  questions: QuestionInterface[] | undefined = []
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly router: Router,
+    private readonly testsService: TestsService,
   ) {}
 
   ngOnInit(): void {
+    this.getTests();
     this.setCategoryTitle();
     this.router.events
       .pipe(
@@ -86,12 +33,29 @@ export class TestsComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.setCategoryTitle();
       });
+    this.getQuestions(this.id)
+  }
+  getTests() {
+    this.testsService.getTests().subscribe({
+      next: (res: TestInterface[]) => {
+        this.tests = res;
+      },
+    });
+  }
+
+  getQuestions(categoryID: number){
+    console.log(categoryID)
+    this.testsService.getQuestions(categoryID).subscribe({
+      next: (res: TestInterface | undefined) => {
+        this.questions = res?.questions
+        console.log(this.questions)
+      }
+    })
   }
 
   setCategoryTitle(): void {
     this.title = this.activatedRoute.snapshot.params['title'];
     this.id = Number(this.activatedRoute.snapshot.params['id']);
-    console.log(this.id);
   }
   ngOnDestroy(): void {
     this.autoUnsub.next(false);
