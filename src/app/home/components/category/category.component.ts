@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, Subject, takeUntil } from 'rxjs';
-import { TestInterface, TestsService } from '../../services/tests.service';
+import { TestsService } from '../../services/tests.service';
+import {TestInterface} from "../../types/test.interface";
 
 @Component({
   selector: 'app-category',

@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, Subject, takeUntil } from 'rxjs';
-import { TestInterface, TestsService } from '../../services/tests.service';
+import { TestsService } from '../../services/tests.service';
+import {TestInterface} from "../../types/test.interface";
+import {QuestionInterface} from "../../types/question.interface";
 
 @Component({
   selector: 'app-tests',
@@ -9,10 +11,11 @@ import { TestInterface, TestsService } from '../../services/tests.service';
   styleUrls: ['./tests.component.scss'],
 })
 export class TestsComponent implements OnInit, OnDestroy {
-  id?: number;
+  id!: number;
   title = '';
   autoUnsub: Subject<boolean> = new Subject();
   tests: TestInterface[] = [];
+  questions: QuestionInterface[] | undefined = []
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly router: Router,
@@ -30,6 +33,7 @@ export class TestsComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.setCategoryTitle();
       });
+    this.getQuestions(this.id)
   }
   getTests() {
     this.testsService.getTests().subscribe({
@@ -38,10 +42,20 @@ export class TestsComponent implements OnInit, OnDestroy {
       },
     });
   }
+
+  getQuestions(categoryID: number){
+    console.log(categoryID)
+    this.testsService.getQuestions(categoryID).subscribe({
+      next: (res: TestInterface | undefined) => {
+        this.questions = res?.questions
+        console.log(this.questions)
+      }
+    })
+  }
+
   setCategoryTitle(): void {
     this.title = this.activatedRoute.snapshot.params['title'];
     this.id = Number(this.activatedRoute.snapshot.params['id']);
-    console.log(this.id);
   }
   ngOnDestroy(): void {
     this.autoUnsub.next(false);

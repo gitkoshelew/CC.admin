@@ -1,16 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-
-export interface TestInterface {
-  id: number;
-  titleTest: string;
-  questions: QuestionInterface[];
-}
-
-interface QuestionInterface {
-  question: string;
-  answers: string[];
-}
+import {filter, map, Observable, of} from 'rxjs';
+import {TestInterface} from "../types/test.interface";
 
 @Injectable({
   providedIn: 'root',
@@ -74,5 +64,8 @@ export class TestsService {
   ];
   getTests(): Observable<TestInterface[]> {
     return of(this.tests$);
+  }
+  getQuestions(categoryId: number): Observable<TestInterface | undefined> {
+    return of(this.tests$).pipe(map(tests => tests.find(test => test.id === categoryId)))
   }
 }
