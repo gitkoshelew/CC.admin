@@ -1,0 +1,11 @@
+<nz-modal
+  [nzTitle]="title | titlecase"
+  nzCentered
+  nzVisible="true"
+  [nzFooter]="null"
+  (nzOnCancel)="modalService.close()"
+>
+  <ng-container *nzModalContent>
+    <ng-content></ng-content>
+  </ng-container>
+</nz-modal>
