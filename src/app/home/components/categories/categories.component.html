@@ -1,0 +1,29 @@
+<div>
+  <button nz-button nzType="primary" (click)="modalService.open()">
+    Add a new category
+  </button>
+
+  <nz-divider></nz-divider>
+  <div
+    nz-row
+    [nzGutter]="[
+      { sm: 10, md: 15 },
+      { xs: 15, sm: 25, md: 35 }
+    ]"
+    nzJustify="space-evenly"
+  >
+    <div
+      nz-col
+      class="gutter-row"
+      nzXs="12"
+      nzSm="8"
+      nzMd="6"
+      nzLg="6"
+      nzXl="4"
+      *ngFor="let category of categories"
+      (click)="navigateToCategories($event, category)"
+    >
+      <div class="grid-config">{{ category }}</div>
+    </div>
+  </div>
+</div>
