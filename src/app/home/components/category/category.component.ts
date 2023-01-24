@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter, Subject, takeUntil } from 'rxjs';
+import {filter, Observable, Subject, takeUntil} from 'rxjs';
 import { TestsService } from '../../services/tests.service';
-import {TestInterface} from "../../types/test.interface";
+import { TestInterface } from '../../types/test.interface';
 
 @Component({
   selector: 'app-category',
@@ -12,7 +12,7 @@ import {TestInterface} from "../../types/test.interface";
 export class CategoryComponent implements OnInit, OnDestroy {
   title = '';
   autoUnsub: Subject<boolean> = new Subject();
-  tests: TestInterface[] = [];
+  tests: Observable<TestInterface[]> | null = null;
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly router: Router,
@@ -36,11 +36,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
     this.title = this.activatedRoute.snapshot.params['title'];
   }
   getTests() {
-    this.testsService.getTests().subscribe({
-      next: (res: TestInterface[]) => {
-        this.tests = res;
-      },
-    });
+    this.tests =  this.testsService.getTests()
   }
   navigateToTests(id: number) {
     this.router.navigate([`categories/${this.title}/tests/${id}`]);
