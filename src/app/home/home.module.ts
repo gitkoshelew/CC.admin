@@ -33,7 +33,6 @@ import { TestsService } from './services/tests.service';
     CreateCategoryComponent,
     CreateTestComponent,
   ],
-  exports: [],
   imports: [
     HomeRoutingModule,
     CommonModule,

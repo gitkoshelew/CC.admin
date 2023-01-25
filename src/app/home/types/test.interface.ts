@@ -1,6 +1,6 @@
-import {QuestionInterface} from "./question.interface";
+import { QuestionInterface } from './question.interface';
 
-export interface TestInterface{
+export interface TestInterface {
   id: number;
   titleTest: string;
   questions: QuestionInterface[];

@@ -1,15 +1,15 @@
 <div style="background: #ececec; padding: 30px">
   <div nz-row [nzGutter]="6">
     <div class="cardsTests" nz-col>
-          <ng-container *ngFor="let question of questions">
-            <nz-card [nzTitle]="question.question">
-              <ng-container *ngFor="let answer of question.answers">
-                <ul class="answersList">
-                  <li>{{ answer }}</li>
-                </ul>
-              </ng-container>
-            </nz-card>
+      <ng-container *ngFor="let question of questions | async">
+        <nz-card [nzTitle]="question.question">
+          <ng-container *ngFor="let answer of question.answers">
+            <ul class="answersList">
+              <li>{{ answer }}</li>
+            </ul>
           </ng-container>
+        </nz-card>
+      </ng-container>
     </div>
   </div>
 </div>
