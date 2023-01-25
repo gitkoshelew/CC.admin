@@ -1,6 +1,6 @@
 <button
   nz-button
-  style="margin: 10px 0; borderradius: 10px"
+  style="margin: 10px 0; border-radius: 5px"
   nzType="primary"
   (click)="navigateToAddTest()"
 >
@@ -9,7 +9,7 @@
 <div style="background: #ececec; padding: 30px">
   <div nz-row [nzGutter]="6">
     <div class="cards" nz-col>
-      <nz-card [nzTitle]="title" *ngFor="let test of tests">
+      <nz-card [nzTitle]="title" *ngFor="let test of tests | async">
         <p>General questions about {{ title }}</p>
         <button
           nz-button
