@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import {filter, Observable, Subject, takeUntil} from 'rxjs';
+import { filter, Observable, Subject, takeUntil } from 'rxjs';
 import { TestsService } from '../../services/tests.service';
 import { TestInterface } from '../../types/test.interface';
 import { QuestionInterface } from '../../types/question.interface';
@@ -34,9 +34,8 @@ export class TestsComponent implements OnInit, OnDestroy {
     this.getQuestions(this.id);
   }
 
-
   getQuestions(categoryID: number) {
-    this.questions = this.testsService.getQuestions(categoryID)
+    this.questions = this.testsService.getQuestions(categoryID);
   }
 
   setCategoryTitle(): void {
