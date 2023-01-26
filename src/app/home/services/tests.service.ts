@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { filter, map, Observable, of } from 'rxjs';
 import { TestInterface } from '../types/test.interface';
-import {QuestionInterface} from "../types/question.interface";
+import { QuestionInterface } from '../types/question.interface';
+import { NewCategoryInterface } from '../types/category.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -63,12 +64,19 @@ export class TestsService {
       ],
     },
   ];
+
   getTests(): Observable<TestInterface[]> {
     return of(this.tests$);
   }
-  getQuestions(categoryId: number): Observable<QuestionInterface[] | undefined> {
+  getQuestions(
+    categoryId: number,
+  ): Observable<QuestionInterface[] | undefined> {
     return of(this.tests$).pipe(
       map((tests) => tests.find((test) => test.id === categoryId)?.questions),
     );
+  }
+
+  createNewCategory(categoryName: string): Observable<NewCategoryInterface> {
+    return of({ title: categoryName }); // TODO: add post request
   }
 }
