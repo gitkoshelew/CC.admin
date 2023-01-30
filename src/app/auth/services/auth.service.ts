@@ -11,8 +11,8 @@ export class AuthService {
   constructor(private http: HttpClient, private cookieService: CookieService) {}
 
   fakeUser: LoginRequestInterface = {
-    nickName: 'Oleg',
-    password: '123456',
+    nickName: 'admin',
+    password: 'admin',
     rememberMe: false,
   };
 

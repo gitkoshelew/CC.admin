@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import {filter, Observable, Subject, takeUntil} from 'rxjs';
+import { filter, Observable, Subject, takeUntil } from 'rxjs';
 import { TestsService } from '../../services/tests.service';
 import { TestInterface } from '../../types/test.interface';
 
@@ -36,7 +36,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
     this.title = this.activatedRoute.snapshot.params['title'];
   }
   getTests() {
-    this.tests =  this.testsService.getTests()
+    this.tests = this.testsService.getTests();
   }
   navigateToTests(id: number) {
     this.router.navigate([`categories/${this.title}/tests/${id}`]);
