@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 
-type ComplexityType = "Easy" | "Medium" | "Hard"
-type QuestionsNumberType = "10" | "15" | "20" | "25" | "30"
+type ComplexityType = 'Easy' | 'Medium' | 'Hard';
+type QuestionsNumberType = '10' | '15' | '20' | '25' | '30';
 type QuestionDataType = {
   questionId: string;
   isCompleted: boolean;
 };
-type QuestionType = "Single-Choice" | "Multi-Choice"
+type QuestionType = 'Single-Choice' | 'Multi-Choice';
 type TimerDefaultType = {
   minutes: string;
   seconds: string;
@@ -17,12 +17,11 @@ type TimerDefaultType = {
   templateUrl: './create-test.component.html',
   styleUrls: ['./create-test.component.scss'],
 })
-
 export class CreateTestComponent {
   selectedCategory = null;
-  selectedQuestionType: QuestionType = "Single-Choice"
-  isAnswer1: boolean = false
-  isAnswer2: boolean = false
+  selectedQuestionType: QuestionType = 'Single-Choice';
+  isAnswer1 = false;
+  isAnswer2 = false;
   categories = [
     'JavaScript',
     'Node.js',
@@ -36,9 +35,9 @@ export class CreateTestComponent {
     'HTML',
     'Css',
   ];
-  questionTypeData: QuestionType[]  = ["Single-Choice", "Multi-Choice"]
+  questionTypeData: QuestionType[] = ['Single-Choice', 'Multi-Choice'];
   complexity: ComplexityType = 'Medium';
-  questionsNumber: QuestionsNumberType = "10";
+  questionsNumber: QuestionsNumberType = '10';
   questionsData: QuestionDataType[] = [
     {
       questionId: '1',

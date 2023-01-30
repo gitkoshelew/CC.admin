@@ -22,13 +22,13 @@ import { CreateCategoryComponent } from './components/create-category/create-cat
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateTestComponent } from './components/create-test/create-test.component';
 import { TestsService } from './services/tests.service';
-import {NzTypographyModule} from "ng-zorro-antd/typography";
-import {NzRadioModule} from "ng-zorro-antd/radio";
-import {NzPaginationModule} from "ng-zorro-antd/pagination";
-import {NzSpaceModule} from "ng-zorro-antd/space";
-import {NzInputNumberModule} from "ng-zorro-antd/input-number";
-import {NzCheckboxModule} from "ng-zorro-antd/checkbox";
-import {NzIconModule} from "ng-zorro-antd/icon";
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @NgModule({
   declarations: [
