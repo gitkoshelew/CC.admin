@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "npm run prettier --staged && ng lint && ng test --watch=false --browsers=ChromeHeadless",
+    "test": "git pull && npm run prettier --staged && ng lint && ng test --watch=false --browsers=ChromeHeadless",
     "prettier": "prettier --write src/**/*.{ts,js,css,html}",
     "prepare": " npm install husky --save-dev && npx husky-init -y && husky install",
     "lint": "ng lint"
