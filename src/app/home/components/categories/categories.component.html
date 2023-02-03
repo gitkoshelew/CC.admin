@@ -2,7 +2,6 @@
   <button nz-button nzType="primary" (click)="modalService.open()">
     Add a new category
   </button>
-
   <nz-divider></nz-divider>
   <div
     nz-row
@@ -20,10 +19,10 @@
       nzMd="6"
       nzLg="6"
       nzXl="4"
-      *ngFor="let category of categories"
-      (click)="navigateToCategories($event, category)"
+      *ngFor="let category of categories | async"
+      (click)="navigateToCategories($event, category.title, category.id)"
     >
-      <div class="grid-config">{{ category }}</div>
+      <div class="grid-config">{{ category.title }}</div>
     </div>
   </div>
 </div>

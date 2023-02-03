@@ -22,10 +22,10 @@
           <ul>
             <li
               nz-menu-item
-              *ngFor="let category of categories"
-              (click)="navigateToCategories($event, category)"
+              *ngFor="let category of categories | async"
+              (click)="navigateToCategories($event, category.title, category.id)"
             >
-              {{ category }}
+              {{ category.title }}
             </li>
           </ul>
         </li>
