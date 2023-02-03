@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, Observable, Subject, takeUntil } from 'rxjs';
 import { TestsService } from '../../services/tests.service';
-import {QuizInterface} from '../../types/quiz.interface';
+import { QuizInterface } from '../../types/quiz.interface';
 
 @Component({
   selector: 'app-category',
@@ -22,7 +22,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.setCategoryTitle();
-    this.setTopicId()
+    this.setTopicId();
     this.getTests(this.title);
     this.router.events
       .pipe(
@@ -38,17 +38,21 @@ export class CategoryComponent implements OnInit, OnDestroy {
     this.title = this.activatedRoute.snapshot.params['title'];
   }
   setTopicId(): void {
-    this.topicId = this.activatedRoute.snapshot.params['topicId']
+    this.topicId = this.activatedRoute.snapshot.params['topicId'];
   }
 
   getTests(title: string) {
     this.tests = this.testsService.getTests(title);
   }
   navigateToTests(id: number) {
-    this.router.navigate([`categories/${this.title}/${this.topicId}/tests/${id}`]);
+    this.router.navigate([
+      `categories/${this.title}/${this.topicId}/tests/${id}`,
+    ]);
   }
   navigateToAddTest(): void {
-    this.router.navigate([`categories/${this.title}/${this.topicId}/create-test`]);
+    this.router.navigate([
+      `categories/${this.title}/${this.topicId}/create-test`,
+    ]);
   }
   ngOnDestroy(): void {
     this.autoUnsub.next(false);

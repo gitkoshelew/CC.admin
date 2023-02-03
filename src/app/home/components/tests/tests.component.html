@@ -2,14 +2,14 @@
   <div nz-row [nzGutter]="6">
     <div class="cardsTests" nz-col>
       <ng-container *ngFor="let question of questions | async">
-          <nz-card [nzTitle]="question.title">
-            <ng-container *ngFor="let option of question.content.options">
-              <ul class="answersList">
-                <li>{{ option }}</li>
-              </ul>
-            </ng-container>
-          </nz-card>
-        </ng-container>
+        <nz-card [nzTitle]="question.title">
+          <ng-container *ngFor="let option of question.content.options">
+            <ul class="answersList">
+              <li>{{ option }}</li>
+            </ul>
+          </ng-container>
+        </nz-card>
+      </ng-container>
     </div>
   </div>
 </div>

@@ -1,16 +1,16 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalService } from 'src/app/shared/modules/modal/modal.service';
-import {CategoryInterface} from "../../types/category.interface";
-import {Observable} from "rxjs";
-import {TestsService} from "../../services/tests.service";
+import { CategoryInterface } from '../../types/category.interface';
+import { Observable } from 'rxjs';
+import { TestsService } from '../../services/tests.service';
 
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.scss'],
 })
-export class CategoriesComponent implements OnInit{
+export class CategoriesComponent implements OnInit {
   categories: Observable<CategoryInterface[]> | null = null;
 
   constructor(
@@ -28,6 +28,6 @@ export class CategoriesComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.getCategories()
+    this.getCategories();
   }
 }

@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import {filter, Observable, Subject, takeUntil} from 'rxjs';
+import { filter, Observable, Subject, takeUntil } from 'rxjs';
 import { ModalService } from 'src/app/shared/modules/modal/modal.service';
-import {CategoryInterface} from "../../types/category.interface";
-import {TestsService} from "../../services/tests.service";
+import { CategoryInterface } from '../../types/category.interface';
+import { TestsService } from '../../services/tests.service';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.getCategories()
+    this.getCategories();
     this.setActiveRoute();
     this.router.events
       .pipe(

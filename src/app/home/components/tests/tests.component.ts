@@ -41,7 +41,7 @@ export class TestsComponent implements OnInit, OnDestroy {
   setParams(): void {
     this.title = this.activatedRoute.snapshot.params['title'];
     this.id = Number(this.activatedRoute.snapshot.params['id']);
-    this.topicId = Number(this.activatedRoute.snapshot.params["topicId"])
+    this.topicId = Number(this.activatedRoute.snapshot.params['topicId']);
   }
   ngOnDestroy(): void {
     this.autoUnsub.next(false);

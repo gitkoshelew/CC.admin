@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthService } from '../../services/auth.service';
-import { catchError, map, of, switchMap } from 'rxjs';
+import { map } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import {
   logoutAction,
-  logoutFailureAction,
   logoutSuccessAction,
 } from '../actions/logout.action';
 
