@@ -16,8 +16,6 @@ import { isLoggedInSelector } from 'src/app/auth/store/selector';
 export class AuthGuard implements CanActivate, CanActivateChild {
   constructor(
     private store: Store,
-    private router: Router,
-    private actions$: Actions,
   ) {}
 
   canActivate(

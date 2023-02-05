@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { AuthService } from '../../services/auth.service';
 import { LoginRequestInterface } from '../../types/loginRequest.interface';
 import { loginAction } from '../../store/actions/login.action';
@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit {
   isSubmitting$!: Observable<boolean>;
 
   submitForm(): void {
-    console.log('submit', this.validateForm.value);
     const request: LoginRequestInterface = this.validateForm.value;
     this.store.dispatch(loginAction({ request }));
   }

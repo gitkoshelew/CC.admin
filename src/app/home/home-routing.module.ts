@@ -21,16 +21,16 @@ const homeRoutes: Routes = [
         data: { breadcrumb: 'Categories' },
       },
       {
-        path: 'categories/:title',
+        path: 'categories/:title/:topicId',
         component: CategoryComponent,
         data: { breadcrumb: ':title' },
       },
       {
-        path: 'categories/:title/tests/:id',
+        path: 'categories/:title/:topicId/tests/:id',
         component: TestsComponent,
       },
       {
-        path: 'categories/:title/create-test',
+        path: 'categories/:title/:topicId/create-test',
         component: CreateTestComponent,
       },
       {

@@ -18,7 +18,6 @@ export class LoginEffect {
     private actions$: Actions,
     private authService: AuthService,
     private router: Router,
-    private cookieService: CookieService,
   ) {}
 
   redirectAfterSubmit$ = createEffect(

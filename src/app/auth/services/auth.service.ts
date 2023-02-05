@@ -2,8 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { LoginRequestInterface } from '../types/loginRequest.interface';
-import { AuthResponseInterface } from '../types/authResponse.interface';
-import { map, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { CurrentUserInterface } from '../../shared/types/currentUser.interface';
 
 @Injectable()

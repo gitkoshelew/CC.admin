@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, Observable, Subject, takeUntil } from 'rxjs';
 import { TestsService } from '../../services/tests.service';
-import { TestInterface } from '../../types/test.interface';
+import { QuizInterface } from '../../types/quiz.interface';
 
 @Component({
   selector: 'app-category',
@@ -11,8 +11,9 @@ import { TestInterface } from '../../types/test.interface';
 })
 export class CategoryComponent implements OnInit, OnDestroy {
   title = '';
+  topicId!: number;
   autoUnsub: Subject<boolean> = new Subject();
-  tests: Observable<TestInterface[]> | null = null;
+  tests: Observable<QuizInterface[]> | null = null;
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly router: Router,
@@ -20,8 +21,9 @@ export class CategoryComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.getTests();
     this.setCategoryTitle();
+    this.setTopicId();
+    this.getTests(this.title);
     this.router.events
       .pipe(
         takeUntil(this.autoUnsub),
@@ -35,14 +37,22 @@ export class CategoryComponent implements OnInit, OnDestroy {
   setCategoryTitle(): void {
     this.title = this.activatedRoute.snapshot.params['title'];
   }
-  getTests() {
-    this.tests = this.testsService.getTests();
+  setTopicId(): void {
+    this.topicId = this.activatedRoute.snapshot.params['topicId'];
+  }
+
+  getTests(title: string) {
+    this.tests = this.testsService.getTests(title);
   }
   navigateToTests(id: number) {
-    this.router.navigate([`categories/${this.title}/tests/${id}`]);
+    this.router.navigate([
+      `categories/${this.title}/${this.topicId}/tests/${id}`,
+    ]);
   }
   navigateToAddTest(): void {
-    this.router.navigate([`categories/${this.title}/create-test`]);
+    this.router.navigate([
+      `categories/${this.title}/${this.topicId}/create-test`,
+    ]);
   }
   ngOnDestroy(): void {
     this.autoUnsub.next(false);

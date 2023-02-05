@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, Observable, Subject, takeUntil } from 'rxjs';
 import { TestsService } from '../../services/tests.service';
-import { TestInterface } from '../../types/test.interface';
 import { QuestionInterface } from '../../types/question.interface';
 
 @Component({
@@ -12,9 +11,10 @@ import { QuestionInterface } from '../../types/question.interface';
 })
 export class TestsComponent implements OnInit, OnDestroy {
   id!: number;
+  topicId!: number;
   title = '';
   autoUnsub: Subject<boolean> = new Subject();
-  questions!: Observable<QuestionInterface[] | undefined>;
+  questions!: Observable<QuestionInterface[] | null>;
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly router: Router,
@@ -22,25 +22,26 @@ export class TestsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.setCategoryTitle();
+    this.setParams();
     this.router.events
       .pipe(
         takeUntil(this.autoUnsub),
         filter((event) => event instanceof NavigationEnd),
       )
       .subscribe(() => {
-        this.setCategoryTitle();
+        this.setParams();
       });
-    this.getQuestions(this.id);
+    this.getQuestions(this.topicId);
   }
 
-  getQuestions(categoryID: number) {
-    this.questions = this.testsService.getQuestions(categoryID);
+  getQuestions(topicId: number) {
+    this.questions = this.testsService.getQuestions(topicId);
   }
 
-  setCategoryTitle(): void {
+  setParams(): void {
     this.title = this.activatedRoute.snapshot.params['title'];
     this.id = Number(this.activatedRoute.snapshot.params['id']);
+    this.topicId = Number(this.activatedRoute.snapshot.params['topicId']);
   }
   ngOnDestroy(): void {
     this.autoUnsub.next(false);
