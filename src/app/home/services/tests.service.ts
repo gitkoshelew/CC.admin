@@ -8,7 +8,7 @@ import { CategoryInterface } from '../types/category.interface';
   providedIn: 'root',
 })
 export class TestsService {
-  tests$: QuizInterface[] = [
+  tests: QuizInterface[] = [
     {
       id: 1,
       title: 'NodeJS',
@@ -40,7 +40,7 @@ export class TestsService {
       authorID: 1,
     },
   ];
-  questions$: QuestionInterface[] = [
+  questions: QuestionInterface[] = [
     {
       id: 1,
       title: 'Node JS question #1',
@@ -126,7 +126,7 @@ export class TestsService {
       moderationId: 6,
     },
   ];
-  categories$: CategoryInterface[] = [
+  categories: CategoryInterface[] = [
     { id: 1, title: 'NodeJS' },
     { id: 2, title: 'JavaScript' },
     { id: 3, title: 'React' },
@@ -141,7 +141,7 @@ export class TestsService {
   ];
 
   getTests(title: string): Observable<QuizInterface[]> {
-    return of(this.tests$).pipe(
+    return of(this.tests).pipe(
       map((tests) =>
         tests.filter(
           (test) => test.title.toUpperCase() === title.toUpperCase(),
@@ -151,13 +151,13 @@ export class TestsService {
   }
 
   getQuestions(topicId: number): Observable<QuestionInterface[]> {
-    return of(this.questions$).pipe(
+    return of(this.questions).pipe(
       map((questions) =>
         questions.filter((question) => question.topicId === topicId),
       ),
     );
   }
   getCategories(): Observable<CategoryInterface[]> {
-    return of(this.categories$);
+    return of(this.categories);
   }
 }
