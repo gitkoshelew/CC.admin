@@ -3,10 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthService } from '../../services/auth.service';
 import { map } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
-import {
-  logoutAction,
-  logoutSuccessAction,
-} from '../actions/logout.action';
+import { logoutAction, logoutSuccessAction } from '../actions/logout.action';
 
 @Injectable()
 export class LogoutEffect {

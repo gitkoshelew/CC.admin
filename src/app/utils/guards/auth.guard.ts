@@ -14,9 +14,7 @@ import { isLoggedInSelector } from 'src/app/auth/store/selector';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {
-  constructor(
-    private store: Store,
-  ) {}
+  constructor(private store: Store) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,

@@ -5,5 +5,4 @@ export interface CurrentUserInterface {
   updatedAt: string;
   nickName: string;
   image: string | null;
-  token: string;
 }

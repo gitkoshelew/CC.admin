@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { AuthService } from '../../services/auth.service';
 import { LoginRequestInterface } from '../../types/loginRequest.interface';
 import { loginAction } from '../../store/actions/login.action';
 import { isSubmittingSelector } from '../../store/selector';
@@ -24,11 +23,10 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private store: Store,
-    private authService: AuthService,
   ) {}
   initializeForm(): void {
     this.validateForm = this.fb.group({
-      nickName: '',
+      email: '',
       password: '',
       rememberMe: true,
     });
