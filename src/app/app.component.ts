@@ -4,8 +4,4 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  constructor() {
-    console.log(process.env)
-  }
-}
+export class AppComponent {}

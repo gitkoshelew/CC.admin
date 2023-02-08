@@ -59,7 +59,6 @@ export class GetCurrentUserEffect {
       return this.actions$.pipe(
         ofType(getCurrentUserSuccessAction),
         tap(() => {
-          console.log('Logged In');
           this.router.navigateByUrl('/');
         }),
       );

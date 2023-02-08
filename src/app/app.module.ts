@@ -40,14 +40,14 @@ registerLocaleData(en);
   providers: [
     {
       provide: NZ_I18N,
-      useValue: en_US
+      useValue: en_US,
     },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptor,
       multi: true,
     },
-    AuthGuard
+    AuthGuard,
   ],
   bootstrap: [AppComponent],
 })

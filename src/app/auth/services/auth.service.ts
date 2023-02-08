@@ -5,13 +5,18 @@ import { LoginRequestInterface } from '../types/loginRequest.interface';
 import { map, Observable } from 'rxjs';
 import { CurrentUserInterface } from '../../shared/types/currentUser.interface';
 import { RegistrationRequest } from '../types/registrationRequest.interface';
+import { AccessTokenService } from 'src/app/auth/services/access-token.service';
 
 @Injectable()
 export class AuthService {
-  constructor(private http: HttpClient, private cookieService: CookieService) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly cookieService: CookieService,
+    private readonly accessTokenService: AccessTokenService,
+  ) {}
 
   fakeUser: LoginRequestInterface = {
-    nickName: 'admin',
+    email: 'admin',
     password: 'admin',
     rememberMe: false,
   };
@@ -21,39 +26,47 @@ export class AuthService {
     email: '',
     createdAt: new Date().toString(),
     updatedAt: new Date().toString(),
-    nickName: this.fakeUser.nickName,
+    nickName: this.fakeUser.email,
     image: null,
-    token:
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
   };
 
   login(user: LoginRequestInterface): Observable<CurrentUserInterface> {
-    console.log('login')
-    return this.http.post<{accessToken: string}>(process.env['NG_APP_BACKEND_ADDRESS'] + 'auth/login', user)
+    return this.http
+      .post<{ accessToken: string }>(
+        process.env['NG_APP_BACKEND_ADDRESS'] + 'auth/login',
+        user,
+      )
       .pipe(
         map(({ accessToken }) => {
+          // refresh token stands only for 1 day, access token is valid for 5 minutes
           if (user.rememberMe) {
-            this.cookieService.set('accessToken', accessToken, 365);
+            const refreshToken = this.cookieService.get('refreshToken')
+            console.log({refreshToken})
+            // this.cookieService.set('refreshToken', refreshToken, new Date(Date.now() + 24 * 60 * 60 * 1000));
           }
+          this.accessTokenService.setToken(accessToken);
           return this.currentUser;
-        })
-      )
+        }),
+      );
   }
   registration(user: RegistrationRequest): Observable<CurrentUserInterface> {
-    return this.http.post(process.env['NG_APP_BACKEND_ADDRESS'] + 'auth/registration', user)
+    return this.http
+      .post<{ accessToken: string }>(process.env['NG_APP_BACKEND_ADDRESS'] + 'auth/registration', user)
       .pipe(
-        map(() => {
+        map(({ accessToken }) => {
+          this.accessTokenService.setToken(accessToken);
           return this.currentUser;
-        })
-      )
+        }),
+      );
   }
 
   getCurrentUser(): Observable<CurrentUserInterface> {
-    return this.http.post(process.env['NG_APP_BACKEND_ADDRESS'] + 'auth/refresh-token', {})
+    return this.http
+      .post(process.env['NG_APP_BACKEND_ADDRESS'] + 'auth/refresh-token', {})
       .pipe(
         map(() => {
           return this.currentUser;
-        })
-      )
+        }),
+      );
   }
 }
