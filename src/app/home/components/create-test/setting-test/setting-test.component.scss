@@ -1,0 +1,25 @@
+.container-setting {
+  width: 750px;
+  max-height: 200px;
+  border-radius: 20px;
+  box-sizing: border-box;
+  background-color: #F0F0F0;
+  padding: 15px;
+
+  .common-input .ant-input {
+    margin-bottom: 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background: #FFFFFF;
+  }
+
+  .selectContainer {
+    nz-select {
+      width: 185px;
+
+      nz-select-selector {
+        border-radius: 10px;
+      }
+    }
+  }
+}

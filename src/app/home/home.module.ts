@@ -29,6 +29,9 @@ import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { SettingTestComponent } from './components/create-test/setting-test/setting-test.component';
+import { QuestionBlockComponent } from './components/create-test/question-block/question-block.component';
+import { AnswerBlockComponent } from './components/create-test/answer-block/answer-block.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +42,9 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     TestsComponent,
     CreateCategoryComponent,
     CreateTestComponent,
+    SettingTestComponent,
+    QuestionBlockComponent,
+    AnswerBlockComponent,
   ],
   imports: [
     HomeRoutingModule,

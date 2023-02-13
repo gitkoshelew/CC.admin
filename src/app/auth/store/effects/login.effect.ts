@@ -9,8 +9,7 @@ import {
   loginSuccessAction,
 } from '../actions/login.action';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router'
 
 @Injectable()
 export class LoginEffect {

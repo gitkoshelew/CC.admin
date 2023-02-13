@@ -1,43 +1,21 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {QuestionInterface} from "../../types/question.interface";
+import {UntypedFormBuilder, UntypedFormGroup} from "@angular/forms";
 
-type ComplexityType = 'Easy' | 'Medium' | 'Hard';
-type QuestionsNumberType = '10' | '15' | '20' | '25' | '30';
 type QuestionDataType = {
   questionId: string;
   isCompleted: boolean;
 };
-type QuestionType = 'Single-Choice' | 'Multi-Choice';
-type TimerDefaultType = {
-  minutes: string;
-  seconds: string;
-};
+type QuestionType = 'single' | 'multi';
 
 @Component({
   selector: 'app-create-test',
   templateUrl: './create-test.component.html',
   styleUrls: ['./create-test.component.scss'],
 })
-export class CreateTestComponent {
-  selectedCategory = null;
-  selectedQuestionType: QuestionType = 'Single-Choice';
-  isAnswer1 = false;
-  isAnswer2 = false;
-  categories = [
-    'JavaScript',
-    'Node.js',
-    'React',
-    'Angular',
-    'React Native',
-    'Python',
-    'Java',
-    'C++',
-    'SQL',
-    'HTML',
-    'Css',
-  ];
-  questionTypeData: QuestionType[] = ['Single-Choice', 'Multi-Choice'];
-  complexity: ComplexityType = 'Medium';
-  questionsNumber: QuestionsNumberType = '10';
+export class CreateTestComponent implements OnInit{
+  validateForm!: UntypedFormGroup;
+  question!: QuestionInterface;
   questionsData: QuestionDataType[] = [
     {
       questionId: '1',
@@ -80,8 +58,26 @@ export class CreateTestComponent {
       isCompleted: false,
     },
   ];
-  timer: TimerDefaultType = {
-    minutes: '5',
-    seconds: '00',
-  };
+  questionType!: QuestionType;
+  constructor(private fb: UntypedFormBuilder) {}
+  getQuestionType(value: QuestionType){
+    this.questionType = value
+  }
+
+  submitForm(): void {
+    if (this.validateForm.valid) {
+      console.log('submit', this.validateForm.value);
+    } else {
+      Object.values(this.validateForm.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
+    }
+  }
+
+  ngOnInit(): void {
+    this.validateForm = this.fb.group({});
+  }
 }

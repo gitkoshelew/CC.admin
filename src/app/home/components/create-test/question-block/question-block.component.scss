@@ -1,0 +1,15 @@
+.question{
+  padding-bottom: 10px;
+  .question-input .ant-input{
+    width: 420px;
+    border-radius: 10px;
+  }
+  .select-type{
+    width: 175px;
+  }
+  .timer{
+    nz-input-number{
+      width: 55px
+    }
+  };
+}

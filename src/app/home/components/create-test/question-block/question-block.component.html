@@ -1,0 +1,45 @@
+<div class="question">
+  <div nz-row nzJustify="space-between">
+    <div nz-col nzXs="2" nzSm="4" nzMd="6" nzLg="8" nzXl="14">
+      <h3>Question</h3>
+    </div>
+    <div nz-col nzXs="20" nzSm="16" nzMd="12" nzLg="8" nzXl="6">
+      <h3>Question Type:</h3>
+    </div>
+    <div nz-col nzXs="2" nzSm="4" nzMd="6" nzLg="8" nzXl="4">
+      <h3>Timer</h3>
+    </div>
+  </div>
+  <div nz-row nzJustify="space-between">
+    <div class="question-input">
+      <input nz-input placeholder="Question text" nzSize="default" />
+    </div>
+    <nz-select
+      class="select-type"
+      nzAllowClear
+      nzPlaceHolder="Select a type"
+      [(ngModel)]="selectedQuestionType"
+      (ngModelChange)="onChangeType()"
+    >
+      <nz-option
+        *ngFor="let questionType of questionTypeData"
+        [nzLabel]="questionType"
+        [nzValue]="questionType"
+      ></nz-option>
+    </nz-select>
+    <div class="timer">
+      <nz-input-number
+        [(ngModel)]="timer.minutes"
+        [nzStep]="1"
+        [nzMin]="0"
+      ></nz-input-number>
+      :
+      <nz-input-number
+        [(ngModel)]="timer.seconds"
+        [nzStep]="5"
+        [nzMax]="59"
+        [nzMin]="0"
+      ></nz-input-number>
+    </div>
+  </div>
+</div>
