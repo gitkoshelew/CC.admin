@@ -62,10 +62,6 @@ export class AnswerBlockComponent {
       this.validateFormProps.removeControl(answer.title);
     }
   }
-  changeAnswer(){
-
-  }
-
   ngOnInit(): void {
     this.addAnswer();
   }

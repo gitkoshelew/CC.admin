@@ -8,7 +8,7 @@
         nz-input
         placeholder="answer title"
         [attr.id]="answer.id"
-        [formControlName]="answer.title"
+        [(ngModel)]="answer.title"
       />
       <label class="correctAnswer-checkbox" nz-checkbox [(ngModel)]="answer.isCorrectAnswer" [nzChecked]="answer.isCorrectAnswer" (ngModelChange)="selectCheckbox(answer.id)"></label>
       <span nz-icon nzType="delete" nzTheme="outline" class="dynamic-delete-button"
