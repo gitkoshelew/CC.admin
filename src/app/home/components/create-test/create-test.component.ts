@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {QuestionInterface} from "../../types/question.interface";
-import {UntypedFormBuilder, UntypedFormGroup} from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { QuestionInterface } from '../../types/question.interface';
+import { FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 type QuestionDataType = {
   questionId: string;
@@ -13,8 +13,9 @@ type QuestionType = 'single' | 'multi';
   templateUrl: './create-test.component.html',
   styleUrls: ['./create-test.component.scss'],
 })
-export class CreateTestComponent implements OnInit{
-  validateForm!: UntypedFormGroup;
+export class CreateTestComponent implements OnInit {
+  validateForm = new UntypedFormGroup({});
+  optionsForm: FormGroup[] = [];
   question!: QuestionInterface;
   questionsData: QuestionDataType[] = [
     {
@@ -60,15 +61,15 @@ export class CreateTestComponent implements OnInit{
   ];
   questionType!: QuestionType;
   constructor(private fb: UntypedFormBuilder) {}
-  getQuestionType(value: QuestionType){
-    this.questionType = value
+  getQuestionType(value: QuestionType) {
+    this.questionType = value;
   }
 
   submitForm(): void {
     if (this.validateForm.valid) {
       console.log('submit', this.validateForm.value);
     } else {
-      Object.values(this.validateForm.controls).forEach(control => {
+      Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {
           control.markAsDirty();
           control.updateValueAndValidity({ onlySelf: true });

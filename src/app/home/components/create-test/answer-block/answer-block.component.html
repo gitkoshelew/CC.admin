@@ -1,23 +1,42 @@
-<nz-form-item *ngFor="let answer of answers.options; let i = index">
-  <nz-form-control
-    nzErrorTip="Please input answer's title or delete this field."
-  >
-    <div nz-row nzJustify="space-between">
-      <input
-        class="answer-input"
-        nz-input
-        placeholder="answer title"
-        [attr.id]="answer.id"
-        [(ngModel)]="answer.title"
-      />
-      <label class="correctAnswer-checkbox" nz-checkbox [(ngModel)]="answer.isCorrectAnswer" [nzChecked]="answer.isCorrectAnswer" (ngModelChange)="selectCheckbox(answer.id)"></label>
-      <span nz-icon nzType="delete" nzTheme="outline" class="dynamic-delete-button"
-            (click)="removeAnswer(answer, $event)"></span></div>
-  </nz-form-control>
-</nz-form-item>
+<div *ngIf="validateFormProps?.length">
+  <nz-form-item *ngFor="let option of validateFormProps; let i = index">
+    <nz-form-control
+      nzErrorTip="Please input answer's title or delete this field."
+    >
+      <form [formGroup]="option" nz-row nzJustify="space-between">
+        <input
+          class="answer-input"
+          nz-input
+          placeholder="answer title"
+          formControlName="title"
+        />
+        <label
+          class="correctAnswer-checkbox"
+          nz-checkbox
+          formControlName="isCorrectAnswer"
+        ></label>
+        <span
+          nz-icon
+          nzType="delete"
+          nzTheme="outline"
+          class="dynamic-delete-button"
+          (click)="removeAnswer(i)"
+        ></span>
+      </form>
+    </nz-form-control>
+  </nz-form-item>
+</div>
 <nz-form-item>
-  <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 20, offset: 0 }">
-    <button nz-button nzType="dashed" class="add-button" (click)="addAnswer($event)">
+  <nz-form-control
+    [nzXs]="{ span: 24, offset: 0 }"
+    [nzSm]="{ span: 20, offset: 0 }"
+  >
+    <button
+      nz-button
+      nzType="dashed"
+      class="add-button"
+      (click)="addAnswer($event)"
+    >
       <span nz-icon nzType="plus"></span>
       Add answer
     </button>

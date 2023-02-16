@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {TestsService} from "../../../services/tests.service";
-import {Observable} from "rxjs";
-import {CategoryInterface} from "../../../types/category.interface";
+import { Component, OnInit } from '@angular/core';
+import { TestsService } from '../../../services/tests.service';
+import { Observable } from 'rxjs';
+import { CategoryInterface } from '../../../types/category.interface';
 
 type ComplexityType = 'light' | 'medium' | 'hard';
 type QuestionsNumberType = '10' | '15' | '20' | '25' | '30';
@@ -9,7 +9,7 @@ type QuestionsNumberType = '10' | '15' | '20' | '25' | '30';
 @Component({
   selector: 'app-setting-test',
   templateUrl: './setting-test.component.html',
-  styleUrls: ['./setting-test.component.scss']
+  styleUrls: ['./setting-test.component.scss'],
 })
 export class SettingTestComponent implements OnInit {
   selectedCategory = null;
@@ -17,8 +17,7 @@ export class SettingTestComponent implements OnInit {
   complexity: ComplexityType = 'medium';
   questionsNumber: QuestionsNumberType = '10';
 
-  constructor(private readonly testsService: TestsService,) {
-  }
+  constructor(private readonly testsService: TestsService) {}
   getCategories() {
     this.categories = this.testsService.getCategories();
   }

@@ -8,13 +8,20 @@
           {{ question.questionId }}
         </div>
       </div>
-      <app-question-block (questionTypeEvent)="getQuestionType($event)"></app-question-block>
+      <app-question-block
+        (questionTypeEvent)="getQuestionType($event)"
+      ></app-question-block>
       <h3>Answer choice</h3>
-      <app-answer-block [questionTypeProps]="questionType" [validateFormProps]="validateForm"></app-answer-block>
+      <app-answer-block
+        [questionTypeProps]="questionType"
+        [validateFormProps]="optionsForm"
+      ></app-answer-block>
       <nz-form-item>
         <nz-form-control>
           <div nz-row nzJustify="center" class="button-group">
-            <button nz-button nzType="primary" nzShape="round">Save test</button>
+            <button nz-button nzType="primary" nzShape="round">
+              Save test
+            </button>
             <button nz-button nzType="default" nzShape="round">Cancel</button>
           </div>
         </nz-form-control>
