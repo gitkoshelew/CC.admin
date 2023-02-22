@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+.inputError{
+  border: 2px solid #2b0808;
+  background-color: rgba(178, 8, 8, 0.2);
+}
+.inputSuccess{
+  border: 2px solid #37a800;
+  background-color: rgba(182, 227, 158, 0.2);
+}

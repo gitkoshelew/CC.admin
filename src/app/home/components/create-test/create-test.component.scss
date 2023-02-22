@@ -1,9 +1,35 @@
-.mainContainer {
+.container-common {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 600px;
+  .button-back{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+  }
+  .container-setting {
+    width: 750px;
+    min-height: 200px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    background-color: #F0F0F0;
+    padding: 15px;
+      .container-input{
+       .ant-input {
+          border-radius: 15px;
+          border: 1px solid rgba(0, 0, 0, 0.2);
+          background: #FFFFFF;
+          width: 700px;
+        }
+      }
 
+    .container-select {
+      nz-select {
+        width: 200px;
+
+      }
+    }
+  }
   .container-question {
     width: 750px;
     max-height: 250px;
@@ -14,11 +40,46 @@
       padding: 10px 0;
     }
 
+    .question {
+      padding-bottom: 10px;
+
+      .timer {
+        nz-input-number {
+          width: 70px
+        }
+      }
+    }
+  }
+  .container-answer{
+    width: 750px;
+    .answer{
+      width: 750px;
+      display: flex;
+      justify-content: space-between;
+      .answer-input {
+        width: 700px;
+        border-radius: 10px;
+      }
+      .correctAnswer-checkbox{
+        margin-top: 3px;
+      }
+      .dynamic-delete-button {
+        cursor: pointer;
+        position: relative;
+        margin-top: 2px;
+        font-size: 24px;
+        color: red;
+      }
+    }
+    .add-button {
+      width: 350px;
+    }
+  }
     .button-group {
       button {
         margin: 20px;
       }
-    }
+
   }
 }
 

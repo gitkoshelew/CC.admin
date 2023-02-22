@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, Observable, Subject, takeUntil } from 'rxjs';
 import { ModalService } from 'src/app/shared/modules/modal/modal.service';
-import { CategoryInterface } from '../../types/category.interface';
+import { TopicInterface } from '../../types/topic.interface';
 import { TestsService } from '../../services/tests.service';
 
 @Component({
@@ -11,13 +11,13 @@ import { TestsService } from '../../services/tests.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  categories: Observable<CategoryInterface[]> | null = null;
+  topics: Observable<TopicInterface[]> | null = null;
   activeTitle = '';
   autoUnsub: Subject<boolean> = new Subject();
 
   navigateToCategories(event: MouseEvent, title: string, topicId: number) {
     event.stopPropagation();
-    this.router.navigate([`categories/${title}/${topicId}`]);
+    this.router.navigate([`topics/${title}/${topicId}`]);
   }
 
   constructor(
@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.getCategories();
+    this.getTopics();
     this.setActiveRoute();
     this.router.events
       .pipe(
@@ -46,8 +46,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   public getActiveTitle(text: string) {
     return text == ':title' ? this.activeTitle : text;
   }
-  getCategories() {
-    this.categories = this.testsService.getCategories();
+  getTopics() {
+    this.topics = this.testsService.getTopics();
   }
 
   ngOnDestroy(): void {

@@ -11,7 +11,6 @@ import {
   styleUrls: ['./create-category.component.scss'],
 })
 export class CreateCategoryComponent implements OnInit {
-  levels = ['easy', 'middle', 'hard']; //TODO: get data from the server through the service
   validateForm!: UntypedFormGroup;
 
   submitForm(): void {
@@ -35,7 +34,7 @@ export class CreateCategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      newCategory: [null, [Validators.required]],
+      newTopic: [null, [Validators.required]],
     });
   }
 }
