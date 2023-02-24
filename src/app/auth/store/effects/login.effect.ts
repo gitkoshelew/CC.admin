@@ -10,7 +10,6 @@ import {
 } from '../actions/login.action';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 
 @Injectable()
 export class LoginEffect {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalService } from 'src/app/shared/modules/modal/modal.service';
-import { CategoryInterface } from '../../types/category.interface';
+import { TopicInterface } from '../../types/topic.interface';
 import { Observable } from 'rxjs';
 import { TestsService } from '../../services/tests.service';
 
@@ -11,7 +11,7 @@ import { TestsService } from '../../services/tests.service';
   styleUrls: ['./categories.component.scss'],
 })
 export class CategoriesComponent implements OnInit {
-  categories: Observable<CategoryInterface[]> | null = null;
+  topics: Observable<TopicInterface[]> | null = null;
 
   constructor(
     private readonly router: Router,
@@ -21,13 +21,13 @@ export class CategoriesComponent implements OnInit {
 
   navigateToCategories(event: MouseEvent, title: string, topicId: number) {
     event.stopPropagation();
-    this.router.navigate([`categories/${title}/${topicId}`]);
+    this.router.navigate([`topics/${title}/${topicId}`]);
   }
-  getCategories() {
-    this.categories = this.testsService.getCategories();
+  getTopics() {
+    this.topics = this.testsService.getTopics();
   }
 
   ngOnInit(): void {
-    this.getCategories();
+    this.getTopics();
   }
 }

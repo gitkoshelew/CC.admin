@@ -21,7 +21,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.setCategoryTitle();
+    this.setTopicTitle();
     this.setTopicId();
     this.getTests(this.title);
     this.router.events
@@ -30,11 +30,11 @@ export class CategoryComponent implements OnInit, OnDestroy {
         filter((event) => event instanceof NavigationEnd),
       )
       .subscribe(() => {
-        this.setCategoryTitle();
+        this.setTopicTitle();
       });
   }
 
-  setCategoryTitle(): void {
+  setTopicTitle(): void {
     this.title = this.activatedRoute.snapshot.params['title'];
   }
   setTopicId(): void {
@@ -46,12 +46,12 @@ export class CategoryComponent implements OnInit, OnDestroy {
   }
   navigateToTests(id: number) {
     this.router.navigate([
-      `categories/${this.title}/${this.topicId}/tests/${id}`,
+      `topics/${this.title}/${this.topicId}/tests/${id}`,
     ]);
   }
   navigateToAddTest(): void {
     this.router.navigate([
-      `categories/${this.title}/${this.topicId}/create-test`,
+      `topics/${this.title}/${this.topicId}/create-test`,
     ]);
   }
   ngOnDestroy(): void {

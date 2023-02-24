@@ -35,4 +35,6 @@ nz-content {
   background: #fff;
   padding: 24px;
   min-height: 280px;
+  overflow-y: auto !important;
+  height: calc(100vh - 150px);
 }

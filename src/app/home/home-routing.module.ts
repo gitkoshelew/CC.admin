@@ -16,21 +16,21 @@ const homeRoutes: Routes = [
     children: [
       { path: '', component: ExampleComponent },
       {
-        path: 'categories',
+        path: 'topics',
         component: CategoriesComponent,
-        data: { breadcrumb: 'Categories' },
+        data: { breadcrumb: 'Topics' },
       },
       {
-        path: 'categories/:title/:topicId',
+        path: 'topics/:title/:topicId',
         component: CategoryComponent,
         data: { breadcrumb: ':title' },
       },
       {
-        path: 'categories/:title/:topicId/tests/:id',
+        path: 'topics/:title/:topicId/tests/:id',
         component: TestsComponent,
       },
       {
-        path: 'categories/:title/:topicId/create-test',
+        path: 'topics/:title/:topicId/create-test',
         component: CreateTestComponent,
       },
       {

@@ -19,10 +19,10 @@
       nzMd="6"
       nzLg="6"
       nzXl="4"
-      *ngFor="let category of categories | async"
-      (click)="navigateToCategories($event, category.title, category.id)"
+      *ngFor="let topic of topics | async"
+      (click)="navigateToCategories($event, topic.title, topic.id)"
     >
-      <div class="grid-config">{{ category.title }}</div>
+      <div class="grid-config">{{ topic.title }}</div>
     </div>
   </div>
 </div>

@@ -3,10 +3,8 @@ import {
   ActivatedRouteSnapshot,
   CanActivate,
   CanActivateChild,
-  Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import { Actions } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
 import { getCurrentUserAction } from 'src/app/auth/store/actions/getCurrentUser.action';

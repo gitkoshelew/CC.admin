@@ -1,164 +1,165 @@
-<div class="mainContainer" nz-col>
-  <h2 nz-typography>Create test</h2>
-  <div class="container-setting">
-    <div nz-row>
-      <div nz-col nzXs="2" nzSm="4" nzMd="6" nzLg="8" nzXl="8">
-        <h3>Test title</h3>
-      </div>
-      <div nz-col nzXs="20" nzSm="16" nzMd="12" nzLg="8" nzXl="2"></div>
-      <div nz-col nzXs="2" nzSm="4" nzMd="6" nzLg="8" nzXl="14">
-        <h3>Test description</h3>
-      </div>
-    </div>
-    <div nz-row>
-      <div
-        class="common-input"
-        nz-col
-        nzXs="2"
-        nzSm="4"
-        nzMd="6"
-        nzLg="8"
-        nzXl="8"
-      >
-        <input nz-input placeholder="Test title" nzSize="default" />
-      </div>
-      <div nz-col nzXs="20" nzSm="16" nzMd="12" nzLg="8" nzXl="2"></div>
-      <div
-        class="common-input"
-        nz-col
-        nzXs="2"
-        nzSm="4"
-        nzMd="6"
-        nzLg="8"
-        nzXl="14"
-      >
-        <input nz-input placeholder="Test description" nzSize="default" />
-      </div>
-    </div>
-    <div nz-row class="selectContainer" nzJustify="space-between">
-      <div nz-col nzXs="2" nzSm="4" nzMd="6" nzLg="8" nzXl="8">
-        <h3>Theme</h3>
-      </div>
-      <div nz-col nzXs="20" nzSm="16" nzMd="12" nzLg="8" nzXl="8">
-        <h3>Test Level</h3>
-      </div>
-      <div nz-col nzXs="2" nzSm="4" nzMd="6" nzLg="8" nzXl="8">
-        <h3>Number of questions</h3>
-      </div>
-    </div>
-    <div nz-row class="selectContainer" nzJustify="space-between">
-      <nz-select
-        class="select-category"
-        nzShowSearch
-        nzAllowClear
-        nzPlaceHolder="Select a category"
-        [(ngModel)]="selectedCategory"
-      >
-        <nz-option
-          *ngFor="let category of categories"
-          [nzLabel]="category"
-          [nzValue]="category"
-        ></nz-option>
-      </nz-select>
-      <nz-radio-group [(ngModel)]="complexity" nzButtonStyle="solid">
-        <label nz-radio-button nzValue="Easy"><span>Easy</span></label>
-        <label nz-radio-button nzValue="Medium"><span>Medium</span></label>
-        <label nz-radio-button nzValue="Small"><span>Hard</span></label>
-      </nz-radio-group>
-      <nz-radio-group [(ngModel)]="questionsNumber" nzButtonStyle="solid">
-        <label nz-radio-button nzValue="10"><span>10</span></label>
-        <label nz-radio-button nzValue="15"><span>15</span></label>
-        <label nz-radio-button nzValue="20"><span>20</span></label>
-        <label nz-radio-button nzValue="25"><span>25</span></label>
-        <label nz-radio-button nzValue="30"><span>30</span></label>
-      </nz-radio-group>
-    </div>
+<div nz-col class="container-common">
+  <div class="button-back">
+      <button nz-button nzType="primary" (click)="navigateBackToTopic()">
+        <span nz-icon nzType="left"></span>
+        Go back
+      </button>
   </div>
-  <div class="container-question">
-    <div nz-row class="pagination" nzJustify="space-between">
-      <div *ngFor="let question of questionsData" nz-col>
-        {{ question.questionId }}
+  <h2 nz-typography>Create test</h2>
+  <form nz-form [formGroup]="createTestForm" (ngSubmit)="submitForm()">
+    <div class="container-setting" formGroupName="setting">
+      <div nz-col class="container-input">
+        <h3>Question title:</h3>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Question title is invalid(require title and long not more than 100 symbols)">
+            <input formControlName="titleQuestion" nz-input placeholder="Question title"/>
+          </nz-form-control>
+        </nz-form-item>
+        <h3>Question description:</h3>
+        <nz-form-item>
+          <nz-form-control
+            nzErrorTip="Question description is invalid(require description and long not more than 100 symbols)">
+            <input formControlName="description" nz-input placeholder="Question description"/>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-row class="container-select" nzJustify="space-between">
+        <div nz-col nzXs="2" nzSm="4" nzMd="6" nzLg="8" nzXl="8">
+          <h3>Theme</h3>
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please select your topic!">
+              <nz-select
+                class="select-category"
+                formControlName="topic"
+                nzAllowClear
+                nzPlaceHolder="Select a category"
+              >
+                <nz-option
+                  *ngFor="let topic of topics | async"
+                  [nzLabel]="topic.title"
+                  [nzValue]="topic.id"
+                ></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzXs="20" nzSm="16" nzMd="12" nzLg="8" nzXl="8">
+          <h3>Test Level</h3>
+          <nz-form-item>
+            <nz-form-control>
+              <nz-radio-group formControlName="difficulty" nzButtonStyle="solid">
+                <label nz-radio-button nzValue="light"><span>Easy</span></label>
+                <label nz-radio-button nzValue="medium"><span>Medium</span></label>
+                <label nz-radio-button nzValue="hard"><span>Hard</span></label>
+              </nz-radio-group>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzXs="2" nzSm="4" nzMd="6" nzLg="8" nzXl="8">
+          <h3>Number of questions</h3>
+          <nz-form-item>
+            <nz-form-control>
+              <nz-radio-group formControlName="numberQuestions" nzButtonStyle="solid" (ngModelChange)="onChangeNumberQuestions()">
+                <label nz-radio-button nzValue="10"><span>10</span></label>
+                <label nz-radio-button nzValue="15"><span>15</span></label>
+                <label nz-radio-button nzValue="20"><span>20</span></label>
+                <label nz-radio-button nzValue="25"><span>25</span></label>
+                <label nz-radio-button nzValue="30"><span>30</span></label>
+              </nz-radio-group>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
       </div>
     </div>
-    <div class="question">
-      <div nz-row nzJustify="space-between">
-        <div nz-col nzXs="2" nzSm="4" nzMd="6" nzLg="8" nzXl="14">
-          <h3>Question</h3>
-        </div>
-        <div nz-col nzXs="20" nzSm="16" nzMd="12" nzLg="8" nzXl="6">
-          <h3>Question Type:</h3>
-        </div>
-        <div nz-col nzXs="2" nzSm="4" nzMd="6" nzLg="8" nzXl="4">
-          <h3>Timer</h3>
+    <div class="container-question">
+      <div nz-row class="pagination" nzJustify="space-between">
+        <div *ngFor="let page of questionPages, let i = index" nz-col>
+          {{ i + 1}}
         </div>
       </div>
-      <div nz-row nzJustify="space-between">
-        <div class="question-input">
-          <input nz-input placeholder="Question text" nzSize="default" />
-        </div>
-        <nz-select
-          class="select-type"
-          nzShowSearch
-          nzAllowClear
-          nzPlaceHolder="Select a category"
-          [(ngModel)]="selectedQuestionType"
-        >
-          <nz-option
-            *ngFor="let questionType of questionTypeData"
-            [nzLabel]="questionType"
-            [nzValue]="questionType"
-          ></nz-option>
-        </nz-select>
-        <div class="timer">
-          <nz-input-number
-            [(ngModel)]="timer.minutes"
-            [nzStep]="1"
-            [nzMin]="0"
-          ></nz-input-number>
-          :
-          <nz-input-number
-            [(ngModel)]="timer.seconds"
-            [nzStep]="5"
-            [nzMax]="59"
-            [nzMin]="0"
-          ></nz-input-number>
+      <div class="question" formGroupName="extraSetting">
+        <div nz-row nzJustify="space-evenly">
+          <div nz-col nzXs="20" nzSm="16" nzMd="12" nzLg="8" nzXl="6">
+            <h3>Question Type</h3>
+            <nz-form-item class="select-type">
+              <nz-form-control>
+                <nz-radio-group formControlName="questionType" nzButtonStyle="solid" (ngModelChange)="onChangeQuestionType()">
+                  <label nz-radio-button nzValue="single"><span>single</span></label>
+                  <label nz-radio-button nzValue="multi"><span>multi</span></label>
+                </nz-radio-group>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzXs="2" nzSm="4" nzMd="6" nzLg="8" nzXl="6">
+            <h3>Timer</h3>
+            <div class="timer" formGroupName="time">
+              <nz-input-number
+                formControlName="minutes"
+                [nzStep]="1"
+                [nzMax]="59"
+                [nzMin]="0"
+              ></nz-input-number>
+              :
+              <nz-input-number
+                formControlName="seconds"
+                [nzStep]="5"
+                [nzMax]="59"
+                [nzMin]="0"
+              ></nz-input-number>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <h3>Answer choice</h3>
-    <div class="answer">
-      <div nz-row nzJustify="space-between">
-        <div class="answer-input">
-          <input nz-input placeholder="Answer text" nzSize="default" />
+    <div class="container-answer" formArrayName="answers">
+      <div *ngFor="let option of answers!.controls; let i = index">
+        <div nz-row class="answer" [formGroupName]="i">
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Answer title is invalid(require title and long not more than 100 symbols)">
+              <input
+                id="i"
+                formControlName="titleAnswer"
+                class="answer-input"
+                nz-input
+                placeholder="answer title"
+              />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control>
+              <label
+                for="i"
+                formControlName="isCorrectAnswer"
+                class="correctAnswer-checkbox"
+                [nzChecked]="answers!.value[i].isCorrectAnswer"
+                nz-checkbox
+                (nzCheckedChange)="setNumberCorrectAnswers(i)"
+              ></label>
+            </nz-form-control>
+          </nz-form-item>
+          <span nz-icon nzType="delete" nzTheme="outline" class="dynamic-delete-button"
+                (click)="removeAnswer(i)"></span>
         </div>
-        <label nz-checkbox [(ngModel)]="isAnswer1"></label>
-        <div class="delete-icon">
-          <span nz-icon nzType="delete" nzTheme="outline"></span>
-        </div>
-      </div>
-      <div nz-row nzJustify="space-between">
-        <div class="answer-input">
-          <input nz-input placeholder="Answer text" nzSize="default" />
-        </div>
-        <div class="isTrueAnswer">
-          <label nz-checkbox [(ngModel)]="isAnswer2"></label>
-        </div>
-        <div class="delete-icon">
-          <span nz-icon nzType="delete" nzTheme="outline"></span>
-        </div>
-      </div>
-      <div nz-row nzJustify="start" class="add-answer">
-        <div class="add-icon">
-          <span nz-icon nzType="plus-circle" nzTheme="outline"></span>
-        </div>
-        <div>
-          <h5 nz-typography>Add answer</h5>
-        </div>
-      </div>
-      <div nz-row nzJustify="center" class="button-group">
-        <button nz-button nzType="primary" nzShape="round">Save test</button>
-        <button nz-button nzType="default" nzShape="round">Cancel</button>
       </div>
     </div>
-  </div>
+    <button
+      class="add-button"
+      nz-button
+      nzType="dashed"
+      (click)="addAnswer()"
+    >
+      <span nz-icon nzType="plus"></span>
+      Add answer
+    </button>
+    <nz-form-item>
+      <nz-form-control>
+        <div nz-row nzJustify="center" class="button-group">
+          <button type="submit" nz-button nzType="primary" nzShape="round" [disabled]="createTestForm.invalid || validationTrueAnswer()">
+            Save test
+          </button>
+        </div>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
 </div>

@@ -29,6 +29,7 @@ import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import {NzTimePickerModule} from "ng-zorro-antd/time-picker";
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     CategoryComponent,
     TestsComponent,
     CreateCategoryComponent,
-    CreateTestComponent,
+    CreateTestComponent
   ],
   imports: [
     HomeRoutingModule,
@@ -63,6 +64,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     NzInputNumberModule,
     NzCheckboxModule,
     NzIconModule,
+    NzTimePickerModule,
   ],
   providers: [TestsService],
   exports: [],

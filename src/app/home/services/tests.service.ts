@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
 import { QuizInterface } from '../types/quiz.interface';
 import { QuestionInterface } from '../types/question.interface';
-import { CategoryInterface } from '../types/category.interface';
+import { TopicInterface } from '../types/topic.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -126,7 +126,7 @@ export class TestsService {
       moderationId: 6,
     },
   ];
-  categories: CategoryInterface[] = [
+  topics$: TopicInterface[] = [
     { id: 1, title: 'NodeJS' },
     { id: 2, title: 'JavaScript' },
     { id: 3, title: 'React' },
@@ -157,7 +157,8 @@ export class TestsService {
       ),
     );
   }
-  getCategories(): Observable<CategoryInterface[]> {
-    return of(this.categories);
+  getTopics(): Observable<TopicInterface[]> {
+    return of(this.topics$);
+
   }
 }

@@ -1,31 +1,32 @@
-.mainContainer {
+.container-common {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 600px;
-
+  .button-back{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+  }
   .container-setting {
     width: 750px;
-    max-height: 200px;
+    min-height: 200px;
     border-radius: 20px;
     box-sizing: border-box;
     background-color: #F0F0F0;
     padding: 15px;
-
-    .common-input .ant-input {
-      margin-bottom: 20px;
-      border-radius: 15px;
-      border: 1px solid rgba(0, 0, 0, 0.2);
-      background: #FFFFFF;
-    }
-
-    .selectContainer {
-      nz-select {
-        width: 185px;
-
-        nz-select-selector {
-          border-radius: 10px;
+      .container-input{
+       .ant-input {
+          border-radius: 15px;
+          border: 1px solid rgba(0, 0, 0, 0.2);
+          background: #FFFFFF;
+          width: 700px;
         }
+      }
+
+    .container-select {
+      nz-select {
+        width: 200px;
+
       }
     }
   }
@@ -34,47 +35,51 @@
     max-height: 250px;
     box-sizing: border-box;
     padding: 10px 0;
-    .pagination{
+
+    .pagination {
       padding: 10px 0;
     }
-    .question{
+
+    .question {
       padding-bottom: 10px;
-      .question-input .ant-input{
-        width: 420px;
-        border-radius: 10px;
-      }
-      .select-type{
-        width: 175px;
-      }
-      .timer{
-        nz-input-number{
-          width: 55px
+
+      .timer {
+        nz-input-number {
+          width: 70px
         }
-      };
-    }
-    .answer{
-      .answer-input .ant-input{
-        width: 680px;
-        border-radius: 10px;
-        margin-bottom: 20px;
       }
-      .delete-icon{
-        margin-top: 1px;
+    }
+  }
+  .container-answer{
+    width: 750px;
+    .answer{
+      width: 750px;
+      display: flex;
+      justify-content: space-between;
+      .answer-input {
+        width: 700px;
+        border-radius: 10px;
+      }
+      .correctAnswer-checkbox{
+        margin-top: 3px;
+      }
+      .dynamic-delete-button {
         cursor: pointer;
+        position: relative;
+        margin-top: 2px;
+        font-size: 24px;
         color: red;
       }
-      .add-answer{
-        cursor: pointer;
-        .add-icon{
-          margin: 0 5px 0 30px;
-        }
-      }
-      .button-group{
-        button{
-          margin: 20px;
-        }
-      }
     }
+    .add-button {
+      width: 350px;
+    }
+  }
+    .button-group {
+      button {
+        margin: 20px;
+      }
+
   }
 }
 
