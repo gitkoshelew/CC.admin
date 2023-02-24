@@ -2,15 +2,21 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { LoginRequestInterface } from '../types/loginRequest.interface';
-import { Observable, of } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { CurrentUserInterface } from '../../shared/types/currentUser.interface';
+import { RegistrationRequest } from '../types/registrationRequest.interface';
+import { AccessTokenService } from 'src/app/auth/services/access-token.service';
 
 @Injectable()
 export class AuthService {
-  constructor(private http: HttpClient, private cookieService: CookieService) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly cookieService: CookieService,
+    private readonly accessTokenService: AccessTokenService,
+  ) {}
 
   fakeUser: LoginRequestInterface = {
-    nickName: 'admin',
+    email: 'admin',
     password: 'admin',
     rememberMe: false,
   };
@@ -20,42 +26,47 @@ export class AuthService {
     email: '',
     createdAt: new Date().toString(),
     updatedAt: new Date().toString(),
-    nickName: this.fakeUser.nickName,
+    nickName: this.fakeUser.email,
     image: null,
-    token:
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
   };
 
   login(user: LoginRequestInterface): Observable<CurrentUserInterface> {
-    // return of(user: CurrentUserInterface)
-    // return this.http
-    //   .post<AuthResponseInterface>('', user)
-    //   .pipe(map((response) => response.user));
-    if (
-      user.nickName === this.fakeUser.nickName &&
-      user.password === this.fakeUser.password // TODO: add http
-    ) {
-      if (user.rememberMe) {
-        this.cookieService.set('accessToken', this.currentUser.token, 365);
-      } else {
-        this.cookieService.set('accessToken', this.currentUser.token);
-      }
-
-      return of(this.currentUser);
-    } else {
-      throw new Error('credential was mismatched');
-    }
+    return this.http
+      .post<{ accessToken: string }>(
+        process.env['NG_APP_BACKEND_ADDRESS'] + 'auth/login',
+        user,
+      )
+      .pipe(
+        map(({ accessToken }) => {
+          // refresh token stands only for 1 day, access token is valid for 5 minutes
+          if (user.rememberMe) {
+            const refreshToken = this.cookieService.get('refreshToken')
+            console.log({refreshToken})
+            // this.cookieService.set('refreshToken', refreshToken, new Date(Date.now() + 24 * 60 * 60 * 1000));
+          }
+          this.accessTokenService.setToken(accessToken);
+          return this.currentUser;
+        }),
+      );
+  }
+  registration(user: RegistrationRequest): Observable<CurrentUserInterface> {
+    return this.http
+      .post<{ accessToken: string }>(process.env['NG_APP_BACKEND_ADDRESS'] + 'auth/registration', user)
+      .pipe(
+        map(({ accessToken }) => {
+          this.accessTokenService.setToken(accessToken);
+          return this.currentUser;
+        }),
+      );
   }
 
   getCurrentUser(): Observable<CurrentUserInterface> {
-    const token = this.cookieService.get('accessToken');
-    if (
-      token ===
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
-    )
-      return of(this.currentUser);
-    else {
-      throw new Error('credential was mismatched');
-    }
+    return this.http
+      .post(process.env['NG_APP_BACKEND_ADDRESS'] + 'auth/refresh-token', {})
+      .pipe(
+        map(() => {
+          return this.currentUser;
+        }),
+      );
   }
 }
