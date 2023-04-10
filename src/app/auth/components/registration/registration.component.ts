@@ -22,7 +22,7 @@ export class RegistrationComponent implements OnInit {
           control.markAsDirty();
           control.updateValueAndValidity({ onlySelf: true });
         }
-      })
+      });
     }
   }
 

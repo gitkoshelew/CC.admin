@@ -20,10 +20,7 @@ export class LoginComponent implements OnInit {
     this.store.dispatch(loginAction({ request }));
   }
 
-  constructor(
-    private fb: FormBuilder,
-    private store: Store,
-  ) {}
+  constructor(private fb: FormBuilder, private store: Store) {}
   initializeForm(): void {
     this.validateForm = this.fb.group({
       email: '',

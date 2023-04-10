@@ -1,0 +1,15 @@
+.action{
+  cursor: pointer;
+  .trash{
+    margin: 10px;
+    &:hover{
+      color: red;
+    }
+  }
+  .edit {
+    margin: 10px;
+    &:hover {
+      color: greenyellow;
+    }
+  }
+}

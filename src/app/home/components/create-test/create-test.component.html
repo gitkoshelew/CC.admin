@@ -1,9 +1,9 @@
 <div nz-col class="container-common">
   <div class="button-back">
-      <button nz-button nzType="primary" (click)="navigateBackToTopic()">
-        <span nz-icon nzType="left"></span>
-        Go back
-      </button>
+    <button nz-button nzType="primary" (click)="navigateBackToTopic()">
+      <span nz-icon nzType="left"></span>
+      Go back
+    </button>
   </div>
   <h2 nz-typography>Create test</h2>
   <form nz-form [formGroup]="createTestForm" (ngSubmit)="submitForm()">
@@ -11,15 +11,26 @@
       <div nz-col class="container-input">
         <h3>Question title:</h3>
         <nz-form-item>
-          <nz-form-control nzErrorTip="Question title is invalid(require title and long not more than 100 symbols)">
-            <input formControlName="titleQuestion" nz-input placeholder="Question title"/>
+          <nz-form-control
+            nzErrorTip="Question title is invalid(require title and long not more than 100 symbols)"
+          >
+            <input
+              formControlName="titleQuestion"
+              nz-input
+              placeholder="Question title"
+            />
           </nz-form-control>
         </nz-form-item>
         <h3>Question description:</h3>
         <nz-form-item>
           <nz-form-control
-            nzErrorTip="Question description is invalid(require description and long not more than 100 symbols)">
-            <input formControlName="description" nz-input placeholder="Question description"/>
+            nzErrorTip="Question description is invalid(require description and long not more than 100 symbols)"
+          >
+            <input
+              formControlName="description"
+              nz-input
+              placeholder="Question description"
+            />
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -47,9 +58,14 @@
           <h3>Test Level</h3>
           <nz-form-item>
             <nz-form-control>
-              <nz-radio-group formControlName="difficulty" nzButtonStyle="solid">
+              <nz-radio-group
+                formControlName="difficulty"
+                nzButtonStyle="solid"
+              >
                 <label nz-radio-button nzValue="light"><span>Easy</span></label>
-                <label nz-radio-button nzValue="medium"><span>Medium</span></label>
+                <label nz-radio-button nzValue="medium"
+                  ><span>Medium</span></label
+                >
                 <label nz-radio-button nzValue="hard"><span>Hard</span></label>
               </nz-radio-group>
             </nz-form-control>
@@ -59,7 +75,11 @@
           <h3>Number of questions</h3>
           <nz-form-item>
             <nz-form-control>
-              <nz-radio-group formControlName="numberQuestions" nzButtonStyle="solid" (ngModelChange)="onChangeNumberQuestions()">
+              <nz-radio-group
+                formControlName="numberQuestions"
+                nzButtonStyle="solid"
+                (ngModelChange)="onChangeNumberQuestions()"
+              >
                 <label nz-radio-button nzValue="10"><span>10</span></label>
                 <label nz-radio-button nzValue="15"><span>15</span></label>
                 <label nz-radio-button nzValue="20"><span>20</span></label>
@@ -73,8 +93,8 @@
     </div>
     <div class="container-question">
       <div nz-row class="pagination" nzJustify="space-between">
-        <div *ngFor="let page of questionPages, let i = index" nz-col>
-          {{ i + 1}}
+        <div *ngFor="let page of questionPages; let i = index" nz-col>
+          {{ i + 1 }}
         </div>
       </div>
       <div class="question" formGroupName="extraSetting">
@@ -83,9 +103,17 @@
             <h3>Question Type</h3>
             <nz-form-item class="select-type">
               <nz-form-control>
-                <nz-radio-group formControlName="questionType" nzButtonStyle="solid" (ngModelChange)="onChangeQuestionType()">
-                  <label nz-radio-button nzValue="single"><span>single</span></label>
-                  <label nz-radio-button nzValue="multi"><span>multi</span></label>
+                <nz-radio-group
+                  formControlName="questionType"
+                  nzButtonStyle="solid"
+                  (ngModelChange)="onChangeQuestionType()"
+                >
+                  <label nz-radio-button nzValue="single"
+                    ><span>single</span></label
+                  >
+                  <label nz-radio-button nzValue="multi"
+                    ><span>multi</span></label
+                  >
                 </nz-radio-group>
               </nz-form-control>
             </nz-form-item>
@@ -116,7 +144,9 @@
       <div *ngFor="let option of answers!.controls; let i = index">
         <div nz-row class="answer" [formGroupName]="i">
           <nz-form-item>
-            <nz-form-control nzErrorTip="Answer title is invalid(require title and long not more than 100 symbols)">
+            <nz-form-control
+              nzErrorTip="Answer title is invalid(require title and long not more than 100 symbols)"
+            >
               <input
                 id="i"
                 formControlName="titleAnswer"
@@ -138,24 +168,30 @@
               ></label>
             </nz-form-control>
           </nz-form-item>
-          <span nz-icon nzType="delete" nzTheme="outline" class="dynamic-delete-button"
-                (click)="removeAnswer(i)"></span>
+          <span
+            nz-icon
+            nzType="delete"
+            nzTheme="outline"
+            class="dynamic-delete-button"
+            (click)="removeAnswer(i)"
+          ></span>
         </div>
       </div>
     </div>
-    <button
-      class="add-button"
-      nz-button
-      nzType="dashed"
-      (click)="addAnswer()"
-    >
+    <button class="add-button" nz-button nzType="dashed" (click)="addAnswer()">
       <span nz-icon nzType="plus"></span>
       Add answer
     </button>
     <nz-form-item>
       <nz-form-control>
         <div nz-row nzJustify="center" class="button-group">
-          <button type="submit" nz-button nzType="primary" nzShape="round" [disabled]="createTestForm.invalid || validationTrueAnswer()">
+          <button
+            type="submit"
+            nz-button
+            nzType="primary"
+            nzShape="round"
+            [disabled]="createTestForm.invalid || validationTrueAnswer()"
+          >
             Save test
           </button>
         </div>

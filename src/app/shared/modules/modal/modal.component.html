@@ -3,7 +3,7 @@
   nzCentered
   nzVisible="true"
   [nzFooter]="null"
-  (nzOnCancel)="modalService.close()"
+  (nzOnCancel)="closeModalWindow()"
 >
   <ng-container *nzModalContent>
     <ng-content></ng-content>

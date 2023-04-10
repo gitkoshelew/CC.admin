@@ -7,6 +7,7 @@ import { TestsComponent } from './components/tests/tests.component';
 import { AuthGuard } from '../utils/guards/auth.guard';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { CreateTestComponent } from './components/create-test/create-test.component';
+import { FeatureFlagsComponent } from './components/feature-flags/feature-flags.component';
 
 const homeRoutes: Routes = [
   {
@@ -32,6 +33,11 @@ const homeRoutes: Routes = [
       {
         path: 'topics/:title/:topicId/create-test',
         component: CreateTestComponent,
+      },
+      {
+        path: 'feature-flags',
+        component: FeatureFlagsComponent,
+        data: { breadcrumb: 'feature-flags' },
       },
       {
         path: 'admins',
