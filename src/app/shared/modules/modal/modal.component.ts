@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ModalService } from './modal.service';
 
 @Component({
@@ -7,7 +7,15 @@ import { ModalService } from './modal.service';
   styleUrls: ['./modal.components.scss'],
 })
 export class ModalComponent {
-  @Input() title!: string;
+  @Input() public title!: string;
+  @Output() public isOpen: EventEmitter<boolean> = new EventEmitter<boolean>(
+    true,
+  );
 
-  constructor(public modalService: ModalService) {}
+  constructor(private modalService: ModalService) {}
+
+  public closeModalWindow(): void {
+    this.modalService.close();
+    this.isOpen.emit(false);
+  }
 }

@@ -18,7 +18,6 @@ import { CategoryComponent } from './components/category/category.component';
 import { TestsComponent } from './components/tests/tests.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { ModalModule } from '../shared/modules/modal/modal.module';
-import { CreateCategoryComponent } from './components/create-category/create-category.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateTestComponent } from './components/create-test/create-test.component';
 import { TestsService } from './services/tests.service';
@@ -29,7 +28,14 @@ import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzIconModule } from 'ng-zorro-antd/icon';
-import {NzTimePickerModule} from "ng-zorro-antd/time-picker";
+import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
+import { FeatureFlagsComponent } from './components/feature-flags/feature-flags.component';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { CreateCategoryComponent } from './components/create-category/create-category.component';
+import { CreateFeatureComponent } from './components/create-feature/create-feature.component';
+import { DeleteFeatureComponent } from './components/delete-feature/delete-feature.component';
+import { EditFeatureComponent } from './components/edit-feature/edit-feature.component';
 
 @NgModule({
   declarations: [
@@ -38,8 +44,12 @@ import {NzTimePickerModule} from "ng-zorro-antd/time-picker";
     CategoriesComponent,
     CategoryComponent,
     TestsComponent,
+    CreateTestComponent,
+    FeatureFlagsComponent,
     CreateCategoryComponent,
-    CreateTestComponent
+    CreateFeatureComponent,
+    DeleteFeatureComponent,
+    EditFeatureComponent,
   ],
   imports: [
     HomeRoutingModule,
@@ -65,6 +75,8 @@ import {NzTimePickerModule} from "ng-zorro-antd/time-picker";
     NzCheckboxModule,
     NzIconModule,
     NzTimePickerModule,
+    NzTableModule,
+    NzModalModule,
   ],
   providers: [TestsService],
   exports: [],

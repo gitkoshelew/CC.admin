@@ -1,0 +1,39 @@
+<div class="edit-feature-container">
+  <form nz-form [formGroup]="validateFormEditFeature" (ngSubmit)="submitForm()">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="5" nzRequired>Title</nz-form-label>
+      <nz-form-control [nzSpan]="19">
+        <input
+          type="text"
+          nz-input
+          [(ngModel)]="title"
+          formControlName="isOrderEditingEnabled"
+          placeholder="Feature title..."
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="5" nzRequired>Description</nz-form-label>
+      <nz-form-control [nzSpan]="19">
+        <nz-textarea-count [nzMaxCharacterCount]="1000">
+          <textarea
+            nz-input
+            [(ngModel)]="description"
+            formControlName="description"
+            rows="2"
+            placeholder="Feature description..."
+          ></textarea>
+        </nz-textarea-count>
+      </nz-form-control>
+    </nz-form-item>
+
+    <button
+      nz-button
+      class="form-button"
+      [nzType]="'primary'"
+      [disabled]="!validateFormEditFeature.valid"
+    >
+      SAVE
+    </button>
+  </form>
+</div>

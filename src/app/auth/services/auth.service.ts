@@ -40,8 +40,8 @@ export class AuthService {
         map(({ accessToken }) => {
           // refresh token stands only for 1 day, access token is valid for 5 minutes
           if (user.rememberMe) {
-            const refreshToken = this.cookieService.get('refreshToken')
-            console.log({refreshToken})
+            const refreshToken = this.cookieService.get('refreshToken');
+            console.log({ refreshToken });
             // this.cookieService.set('refreshToken', refreshToken, new Date(Date.now() + 24 * 60 * 60 * 1000));
           }
           this.accessTokenService.setToken(accessToken);
@@ -51,7 +51,10 @@ export class AuthService {
   }
   registration(user: RegistrationRequest): Observable<CurrentUserInterface> {
     return this.http
-      .post<{ accessToken: string }>(process.env['NG_APP_BACKEND_ADDRESS'] + 'auth/registration', user)
+      .post<{ accessToken: string }>(
+        process.env['NG_APP_BACKEND_ADDRESS'] + 'auth/registration',
+        user,
+      )
       .pipe(
         map(({ accessToken }) => {
           this.accessTokenService.setToken(accessToken);

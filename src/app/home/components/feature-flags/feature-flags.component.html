@@ -1,0 +1,121 @@
+<button nz-button nzType="primary" (click)="openModalCreateFeature()">
+  ADD NEW FEATURE
+</button>
+<nz-divider></nz-divider>
+<nz-table
+  #featureTable
+  [nzData]="(featureFlagsData$ | async)!"
+  [nzPageSize]="5"
+  [nzPaginationPosition]="'top'"
+  [nzSize]="'middle'"
+>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Date</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let feature of featureTable.data">
+      <td>{{ feature.id }}</td>
+      <td>{{ feature.isOrderEditingEnabled }}</td>
+      <td>{{ feature.description }}</td>
+      <td>
+        <div>
+          <label
+            nz-checkbox
+            [(ngModel)]="feature.adminPortalFeatureStatus"
+            [nzChecked]="feature.adminPortalFeatureStatus"
+            (nzCheckedChange)="
+              changeAdminStatus(feature.id, feature.adminPortalFeatureStatus)
+            "
+            >Admin:</label
+          >
+        </div>
+        <div>
+          <label
+            nz-checkbox
+            [(ngModel)]="feature.userPortalFeatureStatus"
+            [nzChecked]="feature.userPortalFeatureStatus"
+            (nzCheckedChange)="
+              changeDesktopStatus(feature.id, feature.userPortalFeatureStatus)
+            "
+            >Desktop:</label
+          >
+        </div>
+        <div>
+          <label
+            nz-checkbox
+            [(ngModel)]="feature.mobilePortalFeatureStatus"
+            [nzChecked]="feature.mobilePortalFeatureStatus"
+            (nzCheckedChange)="
+              changeMobileStatus(feature.id, feature.mobilePortalFeatureStatus)
+            "
+            >Mobile:</label
+          >
+        </div>
+      </td>
+      <td>
+        <p>Created date: {{ feature.createdAt | date : 'short' }}</p>
+        <p>Updated date: {{ feature.updatedAt | date : 'short' }}</p>
+      </td>
+      <td class="action">
+        <span
+          class="edit"
+          nz-icon
+          nzType="edit"
+          nzTheme="outline"
+          (click)="
+            openModalEditFeature(
+              feature.id,
+              feature.isOrderEditingEnabled,
+              feature.description
+            )
+          "
+        ></span>
+        <span
+          class="trash"
+          nz-icon
+          nzType="delete"
+          nzTheme="outline"
+          (click)="openModalDeleteFeature(feature.id)"
+        ></span>
+        <app-modal
+          *ngIf="(isShowModalWindow$ | async) && isEditFeature"
+          title="Edit mode"
+          (isOpen)="changeIsEditFeature($event)"
+        >
+          <app-edit-feature
+            [id]="currentID"
+            [title]="currentTitle"
+            [description]="currentDescription"
+            (isOpen)="changeIsEditFeature($event)"
+          ></app-edit-feature>
+        </app-modal>
+        <app-modal
+          *ngIf="(isShowModalWindow$ | async) && isDeleteFeature"
+          title="Are you sure you want to delete this feature"
+          (isOpen)="changeIsDeleteFeature($event)"
+        >
+          <app-delete-feature
+            [id]="currentID"
+            (isOpen)="changeIsDeleteFeature($event)"
+          ></app-delete-feature>
+        </app-modal>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+<app-modal
+  *ngIf="(isShowModalWindow$ | async) && isCreateFeature"
+  title="Create new feature"
+  (isOpen)="changeIsCreateFeature($event)"
+>
+  <app-create-feature
+    (isOpen)="changeIsCreateFeature($event)"
+  ></app-create-feature>
+</app-modal>

@@ -4,6 +4,7 @@
     <ul nz-menu nzTheme="dark" nzMode="horizontal" class="header-menu">
       <li nz-menu-item routerLink="topics">All categories</li>
       <li nz-menu-item routerLink="tests">All tests</li>
+      <li nz-menu-item routerLink="feature-flags">All feature-flags</li>
     </ul>
   </nz-header>
   <nz-layout>
@@ -23,7 +24,8 @@
             <li
               nz-menu-item
               *ngFor="let topic of topics | async"
-              (click)="navigateToCategories($event, topic.title, topic.id)">
+              (click)="navigateToCategories($event, topic.title, topic.id)"
+            >
               {{ topic.title }}
             </li>
           </ul>
@@ -51,7 +53,3 @@
     </nz-layout>
   </nz-layout>
 </nz-layout>
-<app-modal *ngIf="modalService.isVisible$ | async" title="Create new category">
-  <app-create-category></app-create-category
-  >
-</app-modal>

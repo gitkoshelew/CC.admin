@@ -12,9 +12,7 @@ import { Observable, switchMap } from 'rxjs';
   providedIn: 'root',
 })
 export class RequestInterceptor implements HttpInterceptor {
-  constructor(
-    private readonly tokenService: AccessTokenService
-  ) {}
+  constructor(private readonly tokenService: AccessTokenService) {}
 
   intercept(
     req: HttpRequest<unknown>,
@@ -29,7 +27,7 @@ export class RequestInterceptor implements HttpInterceptor {
           reqClone.headers.set('Authorization', 'Bearer ' + token);
         }
         return next.handle(reqClone);
-      })
-    )
+      }),
+    );
   }
 }

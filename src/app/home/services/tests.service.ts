@@ -149,7 +149,6 @@ export class TestsService {
       ),
     );
   }
-
   getQuestions(topicId: number): Observable<QuestionInterface[]> {
     return of(this.questions).pipe(
       map((questions) =>
@@ -159,6 +158,5 @@ export class TestsService {
   }
   getTopics(): Observable<TopicInterface[]> {
     return of(this.topics$);
-
   }
 }

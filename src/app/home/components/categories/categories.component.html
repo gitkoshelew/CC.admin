@@ -26,3 +26,6 @@
     </div>
   </div>
 </div>
+<app-modal *ngIf="modalService.isVisible$ | async" title="Create new category">
+  <app-create-category></app-create-category>
+</app-modal>
